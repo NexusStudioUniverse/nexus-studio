@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ru" data-nx-reload>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="irongym_gym_in_burgas">IronGYM — тренажерный зал в Бургасе</title>
+<meta name="description" content="IronGYM в Бургасе: силовая зона, кардио, персональные тренеры. Запишитесь на первую тренировку.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#121212;--surface:#1b1b1b;--line:#2e2e2e;--text:#f5f2ec;--muted:#a9a49b;--accent:#ff7a1a;--accent-dark:#e0620a;
+--display:"Anton",Impact,"Arial Narrow",sans-serif;--body:"Manrope",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;--wrap:1120px}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1.0625rem/1.65 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{width:min(100% - 2.5rem,var(--wrap));margin-inline:auto}
+section{padding:clamp(3.5rem,8vw,6.5rem) 0}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.05;margin:0;letter-spacing:.01em}
+h2{font-size:clamp(2.1rem,5vw,3.4rem);margin-bottom:1rem}
+h3{font-size:1.5rem}
+.lead{color:var(--muted);max-width:56ch;margin:0 0 2.5rem}
+.alt{background:var(--surface);border-block:1px solid var(--line)}
+
+.btn{display:inline-block;padding:.9rem 1.7rem;border:1px solid var(--accent);border-radius:2px;background:var(--accent);color:#141414;font:700 1rem var(--body);text-decoration:none;cursor:pointer;transition:background .2s,transform .2s}
+.btn:hover{background:var(--accent-dark);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--text);border-color:var(--text)}
+.btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+/* Шапка */
+header{position:sticky;top:0;z-index:20;background:rgba(18,18,18,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:1.5rem;min-height:68px}
+.logo{font:400 1.7rem var(--display);text-decoration:none;letter-spacing:.03em;margin-right:auto}
+.logo span{color:var(--accent)}
+nav ul{list-style:none;display:flex;gap:1.5rem;margin:0;padding:0}
+nav a{text-decoration:none;color:var(--muted);font-weight:500;transition:color .2s}
+nav a:hover{color:var(--accent)}
+.bar .btn{padding:.6rem 1.2rem}
+.burger{display:none;width:44px;height:44px;background:none;border:1px solid var(--line);border-radius:2px;cursor:pointer;padding:0;position:relative}
+.burger span,.burger::before,.burger::after{content:"";position:absolute;left:11px;right:11px;height:2px;background:var(--text);transition:.25s}
+.burger::before{top:15px}.burger span{top:21px}.burger::after{top:27px}
+.burger[aria-expanded=true]::before{top:21px;transform:rotate(45deg)}
+.burger[aria-expanded=true]::after{top:21px;transform:rotate(-45deg)}
+.burger[aria-expanded=true] span{opacity:0}
+
+/* Фото-слоты: положите файл в папку images/ или поменяйте путь в style="--img:url(...)" */
+.ph{background:var(--img) center/cover no-repeat,repeating-linear-gradient(135deg,#1b1b1b 0 14px,#171717 14px 28px);border:1px solid var(--line)}
+
+/* Hero */
+.hero{--img:url("images/hero.jpg");min-height:min(88vh,760px);display:flex;align-items:center;padding:5rem 0;background:linear-gradient(90deg,rgba(18,18,18,.95) 25%,rgba(18,18,18,.55)),var(--img) center/cover no-repeat,#1a1a1a;border-bottom:1px solid var(--line)}
+.hero h1{font-size:clamp(3.6rem,12vw,9.5rem);line-height:.92;max-width:11ch}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{font-size:1.2rem;color:#d8d3c9;max-width:42ch;margin:1.6rem 0 2.2rem}
+.actions{display:flex;gap:1rem;flex-wrap:wrap}
+
+/* О нас */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.about-photo{aspect-ratio:4/5}
+.perks{list-style:none;padding:0;margin:2rem 0 0;display:grid;gap:1.3rem}
+.perks li{padding-left:1.2rem;border-left:3px solid var(--accent)}
+.perks strong{display:block}
+.perks span{color:var(--muted)}
+
+/* Галерея */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:210px;gap:.9rem}
+.gallery .ph{border-radius:2px}
+.gallery .wide{grid-column:span 2}.gallery .tall{grid-row:span 2}
+
+/* Тренеры */
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.coach{background:var(--surface);border:1px solid var(--line)}
+.coach .ph{aspect-ratio:4/5;border:0;border-bottom:1px solid var(--line)}
+.coach div:last-child{padding:1.3rem 1.4rem 1.6rem}
+.coach p{margin:.4rem 0 0;color:var(--muted)}
+.coach b{color:var(--accent);font-weight:700}
+
+/* Цены */
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+.plan{position:relative;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);padding:2rem 1.6rem}
+.plan.top{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.badge{position:absolute;top:-.8rem;left:1.6rem;background:var(--accent);color:#141414;font-weight:700;font-size:.85rem;padding:.15rem .7rem}
+.price{font:400 3.4rem/1 var(--display);color:var(--accent);margin:1.1rem 0 .3rem}
+.price small{font:500 1rem var(--body);color:var(--muted)}
+.plan ul{list-style:none;padding:0;margin:1.2rem 0 2rem;color:var(--muted);flex:1}
+.plan li{padding:.45rem 0;border-top:1px solid var(--line)}
+.plan .btn{text-align:center}
+
+/* FAQ */
+.faq{max-width:780px}
+details{border-top:1px solid var(--line)}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;padding:1.2rem 2.5rem 1.2rem 0;font-weight:700;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:.3rem;top:50%;transform:translateY(-50%);font-size:1.6rem;color:var(--accent);transition:transform .2s}
+details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+details p{margin:0 0 1.3rem;color:var(--muted);max-width:62ch}
+
+/* Форма */
+form{display:grid;gap:1.1rem}
+label{display:grid;gap:.4rem;font-weight:500}
+input,select{width:100%;padding:.85rem 1rem;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:2px;font:inherit;color-scheme:dark}
+input:focus,select:focus{border-color:var(--accent);outline:none}
+.form-note{color:var(--muted);font-size:.9rem;margin:0}
+
+/* Контакты */
+dl{margin:0 0 2rem;display:grid;gap:1.3rem}
+dt{color:var(--muted);font-size:.95rem}
+dd{margin:0;font-size:1.2rem;font-weight:500}
+dd a{text-decoration:none;border-bottom:1px solid var(--accent)}
+.hours{width:100%;border-collapse:collapse}
+.hours td{padding:.6rem 0;border-bottom:1px solid var(--line)}
+.hours td:last-child{text-align:right;color:var(--accent);font-weight:700}
+.map{margin-top:2.5rem;aspect-ratio:16/7;min-height:280px;border:1px solid var(--line);background:#1b1b1b}
+.map iframe{width:100%;height:100%;border:0;filter:invert(.92) hue-rotate(180deg) grayscale(.5) contrast(.9)}
+
+/* Оборудование */
+.gear{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem}
+.gear article{border:1px solid var(--line);background:var(--surface);padding:1.6rem}
+.gear p{margin:.6rem 0 0;color:var(--muted)}
+.gear b{color:var(--text)}
+
+footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-size:.95rem}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.social{display:flex;gap:.7rem;flex-wrap:wrap;list-style:none;margin:0;padding:0}
+.social a{display:inline-block;padding:.45rem 1rem;border:1px solid var(--line);border-radius:2px;text-decoration:none;color:var(--text);transition:.2s}
+.social a:hover{border-color:var(--accent);color:var(--accent)}
+
+/* Модальное окно */
+dialog{border:1px solid var(--accent);background:var(--surface);color:var(--text);padding:2.5rem 2rem;max-width:min(92vw,420px);text-align:center;border-radius:2px}
+dialog::backdrop{background:rgba(0,0,0,.75)}
+dialog h3{font-size:2rem;color:var(--accent);margin-bottom:.8rem}
+dialog p{margin:0 0 1.6rem;color:var(--muted)}
+
+
+/* Анимация появления при скролле */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* Отзывы */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.review{background:var(--bg);border:1px solid var(--line);padding:1.8rem;display:flex;flex-direction:column;gap:1rem}
+.review p{margin:0;flex:1}
+.stars{color:var(--accent);letter-spacing:.15em;font-size:1.15rem}
+.stars i{font-style:normal;color:var(--line)}
+.who{display:flex;align-items:center;gap:.8rem}
+.av{width:44px;height:44px;border-radius:50%;background:var(--accent);color:#141414;display:grid;place-items:center;font:400 1.1rem var(--display)}
+.who small{display:block;color:var(--muted)}
+
+/* Калькулятор ИМТ */
+.bmi{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:start}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.bmi-out{border:1px solid var(--line);background:var(--bg);padding:2rem;min-height:250px}
+.bmi-val{font:400 4.5rem/1 var(--display);color:var(--accent)}
+.bmi-cat{font-weight:700;font-size:1.25rem;margin:.4rem 0}
+.bmi-out p{color:var(--muted);margin:.4rem 0 1.5rem}
+
+/* Календарь и время */
+.sched{display:grid;gap:.9rem}
+.lbl{font-weight:500}
+.cal{border:1px solid var(--line);background:var(--bg);padding:1rem}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem}
+.cal-head strong{font:400 1.3rem var(--display);letter-spacing:.03em}
+.cal-nav{width:40px;height:40px;background:none;border:1px solid var(--line);color:var(--text);cursor:pointer;font-size:1.3rem;border-radius:2px;padding:0}
+.cal-nav:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+.cal-nav:disabled{opacity:.3;cursor:default}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.dow{color:var(--muted);font-size:.85rem;padding:.3rem 0}
+.day,.slot{background:none;border:1px solid transparent;color:var(--text);font:inherit;cursor:pointer;border-radius:2px;padding:0}
+.day{aspect-ratio:1;min-height:38px}
+.slot{border-color:var(--line);padding:.6rem 0}
+.day:hover:not(:disabled),.slot:hover:not(:disabled){border-color:var(--accent)}
+.day:disabled,.slot:disabled{color:#555;cursor:default}
+.slot:disabled{border-color:#222}
+.day.today{border-color:var(--line)}
+.day[aria-pressed=true],.slot[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#141414;font-weight:700}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:.5rem}
+.slots-hint{grid-column:1/-1;color:var(--muted);margin:0}
+.err{color:#ff6b5a;margin:0;min-height:1.4em}
+.sum{color:var(--text)!important;font-weight:700}
+
+@media(max-width:960px){
+.plans{grid-template-columns:repeat(2,1fr)}
+.gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:190px}
+.team,.reviews{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:820px){
+.burger{display:block}
+.bar{flex-wrap:wrap;gap:.8rem}
+.bar>.btn{display:none}
+nav{order:3;width:100%;display:none}
+nav.open{display:block}
+nav ul{flex-direction:column;gap:0;padding-bottom:1rem}
+nav a{display:block;padding:.8rem 0;border-top:1px solid var(--line);font-size:1.1rem}
+.split,.gear,.bmi{grid-template-columns:1fr}
+.about-photo{aspect-ratio:16/10}
+.hero{background:linear-gradient(rgba(18,18,18,.85),rgba(18,18,18,.85)),var(--img) center/cover no-repeat,#1a1a1a}
+}
+@media(max-width:560px){
+.plans,.team,.reviews{grid-template-columns:1fr}
+.row{grid-template-columns:1fr 1fr}.cal{padding:.7rem}
+.gallery{grid-auto-rows:150px;gap:.6rem}
+.actions .btn{width:100%;text-align:center}
+.map{aspect-ratio:4/3}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+<style id="nx-back-css">
+.nx-back{position:fixed;top:calc(84px + env(safe-area-inset-top,0px));inset-inline-start:16px;z-index:9999;display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px 0 12px;border-radius:99px;
+  background:rgba(10,10,10,.62);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);color:#fff;
+  font:500 14px/1 system-ui,-apple-system,"Segoe UI",Arial,sans-serif;text-decoration:none;transition:background .3s,color .3s,border-color .3s}
+.nx-back svg{width:16px;height:16px;flex:none;transition:transform .3s}
+.nx-back:hover,.nx-back:focus-visible{background:rgba(255,255,255,.94);color:#0a0a0a;border-color:#fff}
+.nx-back:hover svg,.nx-back:focus-visible svg{transform:translateX(-4px)}
+.nx-back[dir=rtl] svg{transform:scaleX(-1)}
+.nx-back[dir=rtl]:hover svg,.nx-back[dir=rtl]:focus-visible svg{transform:translateX(4px) scaleX(-1)}
+@media(max-width:600px){.nx-back{inset-inline-start:12px;width:40px;padding:0;justify-content:center}.nx-back span{display:none}}
+@media(prefers-reduced-motion:reduce){.nx-back,.nx-back svg{transition:none}}
+</style>
+<script src="../lang.js"></script>
+<style>.nx-pending body{visibility:hidden}</style>
+<script>document.documentElement.classList.add("nx-pending");setTimeout(function(){document.documentElement.classList.remove("nx-pending")},2000)</script>
+<style id="nx-clipx">html,body{overflow-x:clip}</style>
+</head>
+<body>
+<a class="nx-back" data-nx-ui href="../portfolio/index.html" data-i18n-aria="back_btn" aria-label="Back to Nexus Studio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span data-i18n="back_btn">Back to Nexus Studio</span></a>
+
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#top">Iron<span>GYM</span></a>
+    <nav id="menu" aria-label="Основная навигация" data-i18n-aria="main_navigation">
+      <ul>
+        <li><a href="#about" data-i18n="about_us">О нас</a></li>
+        <li><a href="#gallery" data-i18n="gallery">Галерея</a></li>
+        <li><a href="#team" data-i18n="trainers">Тренеры</a></li>
+        <li><a href="#prices" data-i18n="memberships">Абонементы</a></li>
+        <li><a href="#faq" data-i18n="faq">Вопросы</a></li>
+        <li><a href="#contacts" data-i18n="contacts">Контакты</a></li>
+      </ul>
+    </nav>
+    <a class="btn" href="#booking" data-i18n="book_now">Записаться</a>
+    <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu" data-i18n-aria="open_menu"><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap">
+    <h1><span data-i18n="iron">Железо</span> <em data-i18n="never_lies">не врёт</em></h1>
+    <p data-i18n="a_gym_in_burgas_for_people_who">Тренажерный зал в Бургасе для тех, кто приходит работать: свободные веса, сильные тренеры и место у стойки без очереди.</p>
+    <div class="actions">
+      <a class="btn" href="#booking" data-i18n="book_a_workout">Записаться на тренировку</a>
+      <a class="btn ghost" href="#prices" data-i18n="view_memberships">Смотреть абонементы</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap split">
+    <div class="ph about-photo" style="--img:url('images/about.jpg')" role="img" aria-label="Зал IronGYM"></div>
+    <div>
+      <h2 data-i18n="a_gym_where_people_train_serio">Зал, где тренируются всерьёз</h2>
+      <p class="lead" style="margin:0" data-i18n="everything_you_need_for_streng">Всё нужное для силы и результата, и ничего лишнего.</p>
+      <ul class="perks">
+        <li><strong data-i18n="professional_equipment">Профессиональное оборудование</strong><span data-i18n="power_racks_platforms_dumbbell">Силовые рамы, платформы, гантели до 60 кг и блочные тренажёры.</span></li>
+        <li><strong data-i18n="trainers_by_your_side">Тренеры рядом</strong><span data-i18n="they_ll_build_your_program_fix">Составят программу, поставят технику и помогут пройти плато.</span></li>
+        <li><strong data-i18n="convenient_hours">Удобный график</strong><span data-i18n="open_06_00_23_00_on_weekdays_c">Открыты с 06:00 до 23:00 в будни, заходите до работы или после неё.</span></li>
+        <li><strong data-i18n="locker_rooms_and_showers">Раздевалки и душ</strong><span data-i18n="clean_lockers_hot_water_hair_d">Чистые шкафчики, горячая вода, фен.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="alt">
+  <div class="wrap">
+    <h2 data-i18n="gallery">Галерея</h2>
+    <p class="lead" data-i18n="the_gym_and_the_people_growing">Зал и люди, которые в нём растут.</p>
+    <div class="gallery">
+      <div class="ph wide tall" style="--img:url('images/gallery-1.jpg')" role="img" aria-label="Силовая зона"></div>
+      <div class="ph" style="--img:url('images/gallery-2.jpg')" role="img" aria-label="Гантельный ряд"></div>
+      <div class="ph" style="--img:url('images/gallery-3.jpg')" role="img" aria-label="Тренировка с тренером"></div>
+      <div class="ph wide" style="--img:url('images/gallery-4.jpg')" role="img" aria-label="Кардиозона" data-i18n-aria="cardio_zone"></div>
+      <div class="ph" style="--img:url('images/gallery-5.jpg')" role="img" aria-label="Групповая тренировка"></div>
+      <div class="ph" style="--img:url('images/gallery-6.jpg')" role="img" aria-label="Раздевалка"></div>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <h2 data-i18n="our_trainers">Команда тренеров</h2>
+    <p class="lead" data-i18n="people_who_train_every_day_the">Люди, которые сами тренируются каждый день и знают, как это работает.</p>
+    <div class="team">
+      <article class="coach">
+        <div class="ph" style="--img:url('images/trainer-1.jpg')" role="img" aria-label="Тренер Иван Петров"></div>
+        <div><h3 data-i18n="gym_trainer_1_name">Иван Петров</h3><p><b data-i18n="strength_training">Силовые тренировки</b><br><span data-i18n="bench_squat_deadlift_9_years_o">Жим, присед, тяга. Опыт 9 лет.</span></p></div>
+      </article>
+      <article class="coach">
+        <div class="ph" style="--img:url('images/trainer-2.jpg')" role="img" aria-label="Тренер Мария Георгиева"></div>
+        <div><h3 data-i18n="gym_trainer_2_name">Мария Георгиева</h3><p><b data-i18n="weight_loss_and_toning">Похудение и тонус</b><br><span data-i18n="programs_for_beginners_and_peo">Программы для новичков и возвращающихся в зал.</span></p></div>
+      </article>
+      <article class="coach">
+        <div class="ph" style="--img:url('images/trainer-3.jpg')" role="img" aria-label="Тренер Георги Димитров"></div>
+        <div><h3 data-i18n="gym_trainer_3_name">Георги Димитров</h3><p><b data-i18n="functional_training">Функциональный тренинг</b><br><span data-i18n="endurance_mobility_injury_work">Выносливость, мобильность, работа с травмами.</span></p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="alt">
+  <div class="wrap">
+    <h2 data-i18n="reviews">Отзывы</h2>
+    <p class="lead" data-i18n="what_people_training_at_irongy">Что говорят те, кто тренируется в IronGYM.</p>
+    <div class="reviews">
+      <article class="review">
+        <div class="stars" role="img" aria-label="Оценка 5 из 5">★★★★★</div>
+        <p data-i18n="gym_review_1_text">Хожу с зимы. Свободных стоек хватает даже вечером, а гантели до 60 кг именно то, чего мне не хватало в других залах Бургаса.</p>
+        <div class="who"><span class="av" aria-hidden="true">Н</span><div><strong data-i18n="gym_review_1_author">Николай Стоянов</strong><small data-i18n="member_since_2025">Посетитель с 2025 года</small></div></div>
+      </article>
+      <article class="review">
+        <div class="stars" role="img" aria-label="Оценка 5 из 5">★★★★★</div>
+        <p data-i18n="gym_review_2_text">Пришла новичком и очень боялась зала. Мария составила программу и объяснила технику. За два месяца минус 6 кг, и я не пропускаю тренировки.</p>
+        <div class="who"><span class="av" aria-hidden="true">Е</span><div><strong data-i18n="gym_review_2_author">Елена Колева</strong><small data-i18n="member_since_2025">Посетитель с 2025 года</small></div></div>
+      </article>
+      <article class="review">
+        <div class="stars" role="img" aria-label="Оценка 5 из 5">★★★★★</div>
+        <p data-i18n="gym_review_3_text">Чисто, светло, музыка не оглушает. Раздевалки и душ в полном порядке, а после работы это важно.</p>
+        <div class="who"><span class="av" aria-hidden="true">Д</span><div><strong data-i18n="gym_review_3_author">Димитър Иванов</strong><small data-i18n="member_since_2026">Посетитель с 2026 года</small></div></div>
+      </article>
+      <article class="review">
+        <div class="stars" role="img" aria-label="Оценка 4 из 5">★★★★<i>★</i></div>
+        <p data-i18n="gym_review_4_text">Переехала в Бургас и искала зал рядом с домом. Здесь спокойная атмосфера, тренеры подсказывают без навязчивости. Хотелось бы больше групповых занятий.</p>
+        <div class="who"><span class="av" aria-hidden="true">А</span><div><strong data-i18n="gym_review_4_author">Анна Морозова</strong><small data-i18n="member_since_2026">Посетитель с 2026 года</small></div></div>
+      </article>
+      <article class="review">
+        <div class="stars" role="img" aria-label="Оценка 5 из 5">★★★★★</div>
+        <p data-i18n="gym_review_5_text">Занимаюсь с Иваном: за полгода добавил 25 кг в приседе. Техника всегда под контролем, ни одной травмы.</p>
+        <div class="who"><span class="av" aria-hidden="true">С</span><div><strong data-i18n="gym_review_5_author">Стефан Петков</strong><small data-i18n="member_since_2024">Посетитель с 2024 года</small></div></div>
+      </article>
+      <article class="review">
+        <div class="stars" role="img" aria-label="Оценка 5 из 5">★★★★★</div>
+        <p data-i18n="gym_review_6_text">Годовой абонемент окупился за пару месяцев. Очень удобно, что зал работает до 23:00 и я успеваю после смены.</p>
+        <div class="who"><span class="av" aria-hidden="true">В</span><div><strong data-i18n="gym_review_6_author">Виктория Атанасова</strong><small data-i18n="member_since_2025">Посетитель с 2025 года</small></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="prices">
+  <div class="wrap">
+    <h2 data-i18n="memberships_and_prices">Абонементы и цены</h2>
+    <p class="lead" data-i18n="choose_a_term_the_longer_it_is">Выберите срок. Чем он длиннее, тем дешевле каждая тренировка.</p>
+    <div class="plans">
+      <article class="plan">
+        <h3 data-i18n="drop_in">Разовое</h3>
+        <div class="price">6 € <small data-i18n="visit">/ визит</small></div>
+        <ul><li data-i18n="full_gym_access">Весь зал</li><li data-i18n="locker_room_and_shower">Раздевалка и душ</li><li data-i18n="no_commitment">Без обязательств</li></ul>
+        <a class="btn ghost" href="#booking" data-service="Разовое посещение" data-i18n="book_now">Записаться</a>
+      </article>
+      <article class="plan top">
+        <span class="badge" data-i18n="popular">Популярный</span>
+        <h3 data-i18n="1_month">Месяц</h3>
+        <div class="price">35 € <small data-i18n="30_days">/ 30 дней</small></div>
+        <ul><li data-i18n="unlimited_visits">Безлимитные посещения</li><li data-i18n="intro_session_with_a_trainer">Вводная тренировка с тренером</li><li data-i18n="monthly_program">Программа на месяц</li></ul>
+        <a class="btn" href="#booking" data-service="Абонемент на месяц" data-i18n="book_now">Записаться</a>
+      </article>
+      <article class="plan">
+        <h3 data-i18n="3_months">3 месяца</h3>
+        <div class="price">90 € <small data-i18n="90_days">/ 90 дней</small></div>
+        <ul><li data-i18n="unlimited_visits">Безлимитные посещения</li><li data-i18n="measurements_and_progress_trac">Замеры и контроль прогресса</li><li data-i18n="freeze_up_to_7_days">Заморозка до 7 дней</li></ul>
+        <a class="btn ghost" href="#booking" data-service="Абонемент на 3 месяца" data-i18n="book_now">Записаться</a>
+      </article>
+      <article class="plan">
+        <h3 data-i18n="1_year">Год</h3>
+        <div class="price">300 € <small data-i18n="12_mo">/ 12 мес.</small></div>
+        <ul><li data-i18n="unlimited_visits">Безлимитные посещения</li><li data-i18n="2_personal_sessions">2 персональные тренировки</li><li data-i18n="freeze_up_to_30_days">Заморозка до 30 дней</li></ul>
+        <a class="btn ghost" href="#booking" data-service="Абонемент на год" data-i18n="book_now">Записаться</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="bmi" class="alt">
+  <div class="wrap bmi">
+    <div>
+      <h2 data-i18n="bmi_calculator">Калькулятор ИМТ</h2>
+      <p class="lead" data-i18n="enter_your_height_and_weight_t">Введите рост и вес, чтобы узнать индекс массы тела и понять, с чего лучше начать.</p>
+      <form id="bmiForm">
+        <div class="row">
+          <label><span data-i18n="height_cm">Рост, см</span><input type="number" name="height" min="100" max="250" step="1" inputmode="numeric" required placeholder="178"></label>
+          <label><span data-i18n="weight_kg">Вес, кг</span><input type="number" name="weight" min="25" max="300" step="0.1" inputmode="decimal" required placeholder="75"></label>
+        </div>
+        <button class="btn" type="submit" data-i18n="calculate">Рассчитать</button>
+      </form>
+    </div>
+    <div class="bmi-out" id="bmiOut" aria-live="polite"><p data-i18n="your_result_will_appear_here">Здесь появится результат.</p></div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <h2 data-i18n="where_to_start">С чего начать</h2>
+    <p class="lead" data-i18n="answers_to_the_questions_begin">Ответы на вопросы, которые чаще всего задают новички.</p>
+    <div class="faq">
+      <details><summary data-i18n="what_should_i_bring_to_my_firs">Что брать с собой на первую тренировку?</summary><p data-i18n="spare_sportswear_and_shoes_a_t">Сменную спортивную одежду и обувь, полотенце и бутылку воды. Если хотите принять душ, возьмите средства для мытья и сланцы.</p></details>
+      <details><summary data-i18n="do_i_need_to_book_in_advance">Нужна ли предварительная запись?</summary><p data-i18n="for_a_self_guided_workout_no_b">Для самостоятельной тренировки запись не нужна: приходите в часы работы. На вводную или персональную тренировку лучше записаться заранее через форму ниже или по телефону.</p></details>
+      <details><summary data-i18n="are_there_lockers">Есть ли шкафчики?</summary><p data-i18n="yes_the_locker_room_has_lockab">Да, в раздевалке есть закрывающиеся шкафчики. Замок можно принести свой.</p></details>
+      <details><summary data-i18n="i_ve_never_trained_before_is_t">Я никогда не занимался. Это для меня?</summary><p data-i18n="yes_a_trainer_will_show_you_ar">Да. Тренер покажет зал, объяснит технику основных упражнений и составит простую программу на первые недели.</p></details>
+      <details><summary data-i18n="can_i_freeze_my_membership">Можно ли заморозить абонемент?</summary><p data-i18n="3_month_and_annual_memberships">Абонементы на 3 месяца и на год можно заморозить на срок, указанный в тарифе. Для этого сообщите администратору.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="booking" class="alt">
+  <div class="wrap split" style="align-items:start">
+    <div>
+      <h2 data-i18n="book_now">Записаться</h2>
+      <p class="lead" data-i18n="leave_a_request_and_the_admini">Оставьте заявку, и администратор перезвонит, чтобы подтвердить время.</p>
+    </div>
+    <form id="bookingForm">
+      <label><span data-i18n="service">Услуга</span>
+        <select name="service" id="service" required>
+          <option value="Первая тренировка" data-i18n="first_workout">Первая тренировка</option>
+          <option value="Разовое посещение" data-i18n="single_visit">Разовое посещение</option>
+          <option value="Абонемент на месяц" data-i18n="1_month_membership">Абонемент на месяц</option>
+          <option value="Абонемент на 3 месяца" data-i18n="3_month_membership">Абонемент на 3 месяца</option>
+          <option value="Абонемент на год" data-i18n="annual_membership">Абонемент на год</option>
+          <option value="Персональная тренировка" data-i18n="personal_training">Персональная тренировка</option>
+        </select>
+      </label>
+      <label><span data-i18n="name">Имя</span><input type="text" name="name" autocomplete="name" required minlength="2" placeholder="Как к вам обращаться" data-i18n-placeholder="how_should_we_address_you"></label>
+      <label><span data-i18n="phone">Телефон</span><input type="tel" name="phone" autocomplete="tel" required pattern="[0-9+()\s\-]{7,20}" placeholder="+359 88 000 0000"></label>
+      <div class="sched">
+        <span class="lbl" data-i18n="visit_date">Дата визита</span>
+        <div class="cal" id="cal"></div>
+        <span class="lbl" data-i18n="visit_time">Время визита</span>
+        <div class="slots" id="slots"></div>
+        <p class="err" id="schedErr" role="alert"></p>
+      </div>
+      <button class="btn" type="submit" data-i18n="send_request">Отправить заявку</button>
+      <p class="form-note" data-i18n="by_clicking_the_button_you_agr">Нажимая кнопку, вы соглашаетесь на обработку контактных данных для связи с вами.</p>
+    </form>
+  </div>
+</section>
+
+<section id="contacts">
+  <div class="wrap">
+    <h2 data-i18n="contacts">Контакты</h2>
+    <p class="lead" data-i18n="come_by_the_gym_call_or_write">Заходите в зал, звоните или пишите.</p>
+    <div class="split" style="align-items:start">
+      <dl>
+        <div><dt data-i18n="address">Адрес</dt><dd data-i18n="aleksandrovska_st_50_burgas_bu" data-nx-geo="full">ул. Александровская, 50, Бургас, Болгария</dd></div>
+        <div><dt data-i18n="phone">Телефон</dt><dd><a href="tel:+359880000000">+359 88 000 0000</a></dd></div>
+        <div><dt data-i18n="email">Почта</dt><dd><a href="mailto:info@irongym.bg">info@irongym.bg</a></dd></div>
+      </dl>
+      <table class="hours" aria-label="Часы работы" data-i18n-aria="opening_hours">
+        <tr><td data-i18n="monday_friday">Понедельник – пятница</td><td>06:00 – 23:00</td></tr>
+        <tr><td data-i18n="saturday">Суббота</td><td>08:00 – 21:00</td></tr>
+        <tr><td data-i18n="sunday">Воскресенье</td><td>09:00 – 20:00</td></tr>
+      </table>
+    </div>
+    <div class="map">
+      <iframe title="Карта: IronGYM, Бургас" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=%D1%83%D0%BB.+%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80%D0%BE%D0%B2%D1%81%D0%BA%D0%B0+50+Burgas+Bulgaria&output=embed"></iframe>
+    </div>
+  </div>
+</section>
+
+<section id="equipment" class="alt">
+  <div class="wrap">
+    <h2 data-i18n="equipment_guide">Справочник оборудования</h2>
+    <p class="lead" data-i18n="what_s_in_the_gym_and_what_it_">Что есть в зале и для чего это нужно.</p>
+    <div class="gear">
+      <article><h3 data-i18n="power_racks">Силовые рамы</h3><p><b data-i18n="for_basic_lifts">Для базовых упражнений:</b> <span data-i18n="squats_bench_and_overhead_pres">приседаний, жима лёжа и стоя, тяги. Страховочные упоры позволяют работать с большим весом безопасно, даже без партнёра.</span></p></article>
+      <article><h3 data-i18n="dumbbell_rack_up_to_60_kg">Гантельный ряд до 60 кг</h3><p><b data-i18n="for_free_weights">Для свободных весов:</b> <span data-i18n="presses_rows_lunges_and_isolat">жимов, тяг, выпадов и работы на отдельные группы мышц. Подходит и новичкам с лёгкими весами, и опытным атлетам.</span></p></article>
+      <article><h3 data-i18n="cable_machines">Блочные тренажёры</h3><p><b data-i18n="for_precise_muscle_loading">Для точной нагрузки на мышцы:</b> <span data-i18n="lat_pulldown_and_low_row_cross">тяга верхнего и нижнего блока, кроссовер, трицепс на блоке. Вес легко менять штифтом, движение задано траекторией.</span></p></article>
+      <article><h3 data-i18n="cardio_zone">Кардиозона</h3><p><b data-i18n="for_endurance_and_burning_calo">Для выносливости и сжигания калорий:</b> <span data-i18n="treadmills_exercise_bikes_elli">беговые дорожки, велотренажёры, эллипсы и гребной тренажёр. Подходит для разминки, интервальных тренировок и восстановления.</span></p></article>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span data-i18n="2026_irongym_burgas">© 2026 IronGYM, Бургас</span>
+    <ul class="social" aria-label="Социальные сети">
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">Facebook</a></li>
+      <li><a href="#">Telegram</a></li>
+      <li><a href="#">TikTok</a></li>
+    </ul>
+  </div>
+</footer>
+
+<dialog id="thanks" aria-labelledby="thanksTitle">
+  <h3 id="thanksTitle" data-i18n="see_you_at_irongym">Ждём вас в IronGYM</h3>
+  <p style="margin-bottom:.6rem" data-i18n="thank_you_your_request_has_bee">Спасибо, ваша заявка принята!</p>
+  <p class="sum" id="thanksInfo"></p>
+  <button class="btn" type="button" id="closeThanks" data-i18n="close">Закрыть</button>
+</dialog>
+
+<script>
+(function(){
+  function $(id){return document.getElementById(id)}
+  function pad(n){return n<10?'0'+n:''+n}
+
+  /* Меню */
+  var burger=document.querySelector('.burger'),menu=$('menu');
+  function toggle(o){burger.setAttribute('aria-expanded',o);menu.classList.toggle('open',o)}
+  burger.addEventListener('click',function(){toggle(burger.getAttribute('aria-expanded')!=='true')});
+  menu.addEventListener('click',function(e){if(e.target.tagName==='A')toggle(false)});
+
+  /* Кнопки тарифов подставляют услугу в форму */
+  var service=$('service');
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('[data-service]');
+    if(a)service.value=a.dataset.service;
+  });
+
+  /* Плавное появление при скролле */
+  var els=document.querySelectorAll('.hero .wrap>*,main section:not(.hero) .wrap>*:not(.gallery):not(.team):not(.plans):not(.reviews):not(.gear),.gallery>*,.team>*,.plans>*,.reviews>*,.gear>*');
+  if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+    },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(el){
+      var i=Array.prototype.indexOf.call(el.parentNode.children,el);
+      el.style.transitionDelay=(i%4)*90+'ms';
+      el.classList.add('reveal');io.observe(el);
+    });
+  }
+
+  /* Калькулятор ИМТ */
+  var bf=$('bmiForm'),bo=$('bmiOut');
+  bf.addEventListener('submit',function(e){
+    e.preventDefault();
+    var h=parseFloat(bf.elements.height.value),w=parseFloat(bf.elements.weight.value);
+    var b=w/Math.pow(h/100,2),c,tip;
+    if(b<18.5){c=NX.t('gym_bmi_low');tip=NX.t('gym_bmi_low_tip')}
+    else if(b<25){c=NX.t('gym_bmi_norm');tip=NX.t('gym_bmi_norm_tip')}
+    else if(b<30){c=NX.t('gym_bmi_over');tip=NX.t('gym_bmi_over_tip')}
+    else{c=NX.t('gym_bmi_obese');tip=NX.t('gym_bmi_obese_tip')}
+    bo.innerHTML='<div class="bmi-val">'+b.toFixed(1)+'</div><div class="bmi-cat">'+c+'</div><p>'+tip+' '+NX.t('gym_bmi_note')+'</p><a class="btn" href="#booking" data-service="Первая тренировка">'+NX.t('gym_bmi_cta')+'</a>';
+  });
+
+  /* Календарь и слоты времени */
+  var MON=NX.months(false,true);
+  var MONG=NX.months(true);
+  var DOW=NX.dow();
+  var HRS={0:[9,20],1:[6,23],2:[6,23],3:[6,23],4:[6,23],5:[6,23],6:[8,21]}; /* часы работы по дням недели (0 = воскресенье) */
+  var cal=$('cal'),slots=$('slots'),err=$('schedErr');
+  var today=new Date();today.setHours(0,0,0,0);
+  var last=new Date(today);last.setDate(last.getDate()+60);
+  var firstMonth=new Date(today.getFullYear(),today.getMonth(),1);
+  var view=new Date(firstMonth),selDate=null,selTime=null;
+
+  function drawCal(){
+    var y=view.getFullYear(),m=view.getMonth();
+    var h='<div class="cal-head"><button type="button" class="cal-nav" data-dir="-1" aria-label="Предыдущий месяц"'+(view<=firstMonth?' disabled':'')+'>&#8249;</button><strong>'+MON[m]+' '+y+'</strong><button type="button" class="cal-nav" data-dir="1" aria-label="Следующий месяц"'+(new Date(y,m+1,1)>last?' disabled':'')+'>&#8250;</button></div><div class="cal-grid">';
+    DOW.forEach(function(d){h+='<span class="dow">'+d+'</span>'});
+    for(var i=0,f=(view.getDay()+6)%7;i<f;i++)h+='<span></span>';
+    for(var d=1,n=new Date(y,m+1,0).getDate();d<=n;d++){
+      var dt=new Date(y,m,d),off=dt<today||dt>last,on=selDate&&+selDate===+dt;
+      h+='<button type="button" class="day'+(+dt===+today?' today':'')+'" data-d="'+d+'" aria-pressed="'+(!!on)+'"'+(off?' disabled':'')+'>'+d+'</button>';
+    }
+    cal.innerHTML=h+'</div>';
+  }
+  function drawSlots(){
+    if(!selDate){slots.innerHTML='<p class="slots-hint">Сначала выберите день.</p>';return}
+    var r=HRS[selDate.getDay()],now=new Date(),isToday=+selDate===+today,h='';
+    for(var t=r[0];t<r[1];t++){
+      var off=isToday&&t<=now.getHours();
+      h+='<button type="button" class="slot" data-t="'+t+'" aria-pressed="'+(selTime===t)+'"'+(off?' disabled':'')+'>'+pad(t)+':00</button>';
+    }
+    slots.innerHTML=h;
+  }
+  cal.addEventListener('click',function(e){
+    var nav=e.target.closest('.cal-nav'),day=e.target.closest('.day');
+    if(nav){view.setMonth(view.getMonth()+Number(nav.dataset.dir));drawCal()}
+    if(day){
+      selDate=new Date(view.getFullYear(),view.getMonth(),Number(day.dataset.d));
+      selTime=null;err.textContent='';drawCal();drawSlots();
+    }
+  });
+  slots.addEventListener('click',function(e){
+    var s=e.target.closest('.slot');
+    if(s){selTime=Number(s.dataset.t);err.textContent='';drawSlots()}
+  });
+  drawCal();drawSlots();
+
+  /* Отправка формы */
+  var form=$('bookingForm'),dlg=$('thanks');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!selDate||selTime===null){err.textContent=selDate?'Выберите время визита.':'Выберите день и время визита.';return}
+    $('thanksInfo').textContent=service.value+': '+selDate.getDate()+' '+MONG[selDate.getMonth()]+' '+NX.t('at_time')+' '+pad(selTime)+':00';
+    /* Здесь можно отправить данные на сервер: new FormData(form), selDate, selTime */
+    form.reset();selDate=null;selTime=null;err.textContent='';
+    view=new Date(firstMonth);drawCal();drawSlots();
+    dlg.showModal();
+  });
+  $('closeThanks').addEventListener('click',function(){dlg.close()});
+  dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close()});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+/* ЦВЕТА — меняйте здесь */
+:root{--bg:#0b0b0d;--panel:#151518;--line:#26262c;--text:#ecebe6;--muted:#9a978d;--gold:#c8a45a;--r:22px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.65 "Segoe UI",system-ui,Arial,sans-serif}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:600;margin:0 0 .4em;line-height:1.15}
+h2{font-size:clamp(1.6rem,3vw,2.2rem)}
+p{margin:0 0 1em}
+a{color:var(--gold)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.note{color:var(--muted);font-size:.9rem}
+
+/* СЕТКА как в наброске */
+.bento{max-width:1180px;margin:0 auto;padding:16px;display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.s12{grid-column:span 12}.s7{grid-column:span 7}.s6{grid-column:span 6}.s5{grid-column:span 5}.s3{grid-column:span 3}
+.tile{position:relative;overflow:hidden;background:var(--panel);border:1px solid var(--line);border-radius:var(--r)}
+.tall{min-height:480px}.wide{min-height:230px}
+.photo,.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(11,11,13,.92) 8%,rgba(11,11,13,.15) 70%)}
+.photo img{transition:transform .8s ease}
+.tile:hover .photo img{transform:scale(1.04)}
+.body{position:relative;z-index:1;height:100%;padding:30px;display:flex;flex-direction:column;justify-content:flex-end}
+.body.top{justify-content:flex-start}
+
+/* Кнопка */
+.btn{display:inline-block;align-self:flex-start;background:var(--gold);color:#0b0b0d;padding:13px 30px;border:0;border-radius:999px;font:inherit;font-weight:600;text-decoration:none;cursor:pointer;transition:background .2s}
+.btn:hover{background:#dcbd78}
+
+/* Главный блок */
+.hero{min-height:56vh;animation:in .9s ease both}
+.hero h1{font-size:clamp(2.8rem,9vw,6.4rem);letter-spacing:.07em;margin-bottom:.2em}
+.hero p{max-width:520px;color:#c9c6bb;font-size:1.15rem;margin-bottom:1.4em}
+@keyframes in{from{opacity:0}to{opacity:1}}
+
+/* О нас, мастера */
+.about{background:linear-gradient(160deg,#1b1a17,var(--panel) 60%)}
+.about .body p{color:var(--muted);max-width:46ch}
+.sub{font-size:1.15rem;color:var(--gold);margin-top:auto}
+.masters{display:grid;gap:12px;margin-top:8px}
+.master{display:flex;gap:14px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:16px;background:rgba(0,0,0,.25)}
+.master img{width:56px;height:56px;border-radius:50%;object-fit:cover}
+.master b{display:block}.master span{color:var(--muted);font-size:.9rem}
+
+/* Услуги */
+.svc h3{font-size:1.5rem}
+.svc p{color:#c9c6bb;margin-bottom:.6em}
+.combo{margin:.4em 0 0;font-size:.95rem}.combo b{color:var(--gold);font-family:Georgia,serif}
+.price{color:var(--gold);font-family:Georgia,serif;font-size:1.5rem}
+
+/* Запись */
+.booking{padding:30px}
+.booking{overflow:visible}
+.booking form{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:end}
+.booking .btn{grid-column:1/-1;justify-self:start;padding:0 32px;display:inline-flex;align-items:center;white-space:nowrap}
+.field{position:relative;display:grid;gap:6px}
+.lbl{color:var(--muted);font-size:.9rem}
+.timebtn{height:48px;text-align:left;background:#0e0e10;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:0 14px;font:inherit;cursor:pointer}
+.timebtn:hover,.timebtn[aria-expanded=true]{border-color:var(--gold)}
+.slots{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:30;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:12px;background:#111114;border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.6)}
+.slots[hidden]{display:none}
+.slots .msg{grid-column:1/-1;margin:0;font-size:.85rem;color:var(--muted)}
+.slot{height:40px;border:1px solid var(--line);border-radius:10px;background:#1c1c21;color:var(--text);font:inherit;cursor:pointer}
+.slot:hover:not(:disabled){border-color:var(--gold)}
+.slot.on{background:var(--gold);color:#0b0b0d;border-color:var(--gold)}
+.slot:disabled{background:#080809;border-color:#121214;color:#4b4b50;cursor:not-allowed}
+label{display:grid;gap:6px;color:var(--muted);font-size:.9rem}
+input,select,.booking .btn{height:48px}
+input,select{background:#0e0e10;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:0 14px;font:inherit;width:100%}
+input:focus,select:focus{border-color:var(--gold)}
+#result{margin:16px 0 0;color:var(--gold);font-size:.9rem}
+
+/* Работы: 2 ряда по 3 фото, все на одной линии */
+
+/* Контакты и карта */
+.contacts{padding:30px}
+dl{margin:18px 0 0}dt{color:var(--muted);font-size:.85rem;margin-top:14px}dd{margin:0;font-size:1.1rem}
+.map{display:flex;flex-direction:column;min-height:400px}
+.map iframe{flex:1;width:100%;min-height:300px;border:0;filter:invert(.92) hue-rotate(180deg) brightness(.95) contrast(.9)}
+.map-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:16px 20px;border-top:1px solid var(--line)}
+.map-bar p{margin:0;color:var(--muted)}
+
+/* Соцсети */
+.social{padding:34px 30px}
+.social p:nth-of-type(1){display:flex;gap:12px;flex-wrap:wrap}
+.social a{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border:1px solid var(--gold);border-radius:999px;text-decoration:none}
+.social a:hover{background:var(--gold);color:#0b0b0d}
+
+/* Выпадающие списки, дата, подвал */
+select,.timebtn{appearance:none;-webkit-appearance:none;padding-right:42px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' fill='none' stroke='%23c8a45a' stroke-width='2'%3E%3Cpath d='M1 1l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+option{background:#111114;color:var(--text)}
+.timebtn{color:var(--muted)}.timebtn.has{color:var(--text)}
+.day{height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.2;padding:0}
+.day small{font-size:.75rem;opacity:.7}.day b{font-weight:600}
+.about{display:flex;flex-direction:column}
+.about .body{height:auto;flex:1}
+.cover{width:100%;height:230px;object-fit:cover;display:block;border-bottom:1px solid var(--line)}
+.sub{margin-top:.8em}
+.master img{width:64px;height:64px}
+.copy{max-width:1180px;margin:0 auto;padding:18px 16px 36px;text-align:center;color:var(--muted);font-size:.9rem}
+/* Планшет */
+@media(max-width:1000px){
+  .about{grid-column:span 12;min-height:0}
+  .s3{grid-column:span 6}
+  .tall.s3{min-height:420px}
+  .s5,.s7{grid-column:span 12}
+  .map{min-height:300px}
+}
+/* Телефон */
+@media(max-width:900px){
+  .booking form{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  .s7,.s6,.s5{grid-column:span 12}
+  .tall.s3{min-height:340px}
+  .wide{min-height:210px}
+  .body{padding:22px}
+}
+@media(max-width:480px){.s3{grid-column:span 12}.booking form{grid-template-columns:1fr}.slots{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){
+  :root{--r:18px}
+  .bento{padding:12px;gap:12px}
+  .hero{min-height:62vh}
+  .cover{height:190px}
+  .booking{padding:22px 18px}
+  .booking form{grid-template-columns:1fr;gap:14px}
+  input,select,.timebtn,.booking .btn{height:52px;font-size:16px}
+  .booking .btn{width:100%;justify-content:center}
+  .slots{position:static;margin-top:2px;box-shadow:none}
+  .slot{height:46px}.day{height:58px}
+  .contacts,.social{padding:24px 20px}
+  .map-bar{flex-direction:column;align-items:stretch;text-align:center}
+  .map-bar .btn{text-align:center}
+  .social a{flex:1 1 auto;justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+/* ===== Шапка ===== */
+html{scroll-padding-top:84px}
+header.top{position:sticky;top:0;z-index:60;background:rgba(11,11,13,.78);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1180px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:20px}
+.top .nx-back{position:static;inset:auto;z-index:auto;flex:none}
+.brand{font-family:Georgia,"Times New Roman",serif;font-weight:600;letter-spacing:.12em;font-size:1.05rem;color:var(--text);text-decoration:none;white-space:nowrap}
+header.top nav{display:flex;align-items:center;gap:32px;margin-inline:auto}
+header.top nav a{position:relative;padding:6px 0;color:var(--muted);text-decoration:none;font-size:.95rem;white-space:nowrap;transition:color .25s}
+header.top nav a::after{content:"";position:absolute;inset-inline:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+[dir=rtl] header.top nav a::after{transform-origin:right}
+header.top nav a:hover,header.top nav a:focus-visible{color:var(--text)}
+header.top nav a:hover::after,header.top nav a:focus-visible::after{transform:scaleX(1)}
+.top-actions{display:flex;align-items:center;gap:12px;flex:none}
+.top-actions .btn{align-self:center}
+.btn.sm{padding:10px 22px;font-size:.92rem;line-height:1.2}
+.btn.outline{background:transparent;color:var(--gold);border:1px solid var(--gold);transition:background .25s,color .25s}
+.btn.outline:hover{background:var(--gold);color:#0b0b0d}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.28);transition:background .25s,border-color .25s}
+.btn.ghost:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.5)}
+@media(max-width:900px){
+  .top-in{flex-wrap:wrap;row-gap:8px;gap:12px}
+  .brand{margin-inline-end:auto}
+  header.top nav{order:3;width:100%;margin:0;gap:26px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+  header.top nav::-webkit-scrollbar{display:none}
+}
+@media(max-width:520px){.top-actions .btn{display:none}}
+
+/* ===== Галерея «Наши работы» ===== */
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;padding:8px 0}
+.gtitle{grid-column:1/-1;margin:.6em 0 .2em}
+.work{margin:0;position:relative;overflow:hidden;aspect-ratio:3/4;border-radius:16px;border:1px solid rgba(255,255,255,.1);background:var(--panel);box-shadow:0 10px 30px rgba(0,0,0,.35);transition:transform .45s ease,box-shadow .45s ease,border-color .45s}
+.work img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.work:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(0,0,0,.5);border-color:rgba(200,164,90,.45)}
+.work:hover img{transform:scale(1.06)}

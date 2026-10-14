@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru" data-nx-reload>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="black_barber_premium_barbersho">BLACK BARBER — премиальный барбершоп в Бургасе</title>
+<meta name="description" content="BLACK BARBER — барбершоп премиум-класса в Бургасе: мужские и женские стрижки, борода, окрашивание. Онлайн-запись.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style id="nx-back-css">
+.nx-back{position:fixed;top:calc(84px + env(safe-area-inset-top,0px));inset-inline-start:16px;z-index:9999;display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px 0 12px;border-radius:99px;
+  background:rgba(10,10,10,.62);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);color:#fff;
+  font:500 14px/1 system-ui,-apple-system,"Segoe UI",Arial,sans-serif;text-decoration:none;transition:background .3s,color .3s,border-color .3s}
+.nx-back svg{width:16px;height:16px;flex:none;transition:transform .3s}
+.nx-back:hover,.nx-back:focus-visible{background:rgba(255,255,255,.94);color:#0a0a0a;border-color:#fff}
+.nx-back:hover svg,.nx-back:focus-visible svg{transform:translateX(-4px)}
+.nx-back[dir=rtl] svg{transform:scaleX(-1)}
+.nx-back[dir=rtl]:hover svg,.nx-back[dir=rtl]:focus-visible svg{transform:translateX(4px) scaleX(-1)}
+@media(max-width:600px){.nx-back{inset-inline-start:12px;width:40px;padding:0;justify-content:center}.nx-back span{display:none}}
+@media(prefers-reduced-motion:reduce){.nx-back,.nx-back svg{transition:none}}
+</style>
+<script src="../lang.js"></script>
+<style>.nx-pending body{visibility:hidden}</style>
+<script>document.documentElement.classList.add("nx-pending");setTimeout(function(){document.documentElement.classList.remove("nx-pending")},2000)</script>
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <a class="nx-back" data-nx-ui href="../portfolio/index.html" data-i18n-aria="back_btn" aria-label="Back to Nexus Studio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span data-i18n="back_btn">Back to Nexus Studio</span></a>
+  <a class="brand" href="#home">BLACK BARBER</a>
+  <nav aria-label="Menu" data-i18n-aria="menu"><a href="#about" data-i18n="about_us">О нас</a><a href="#services" data-i18n="services">Услуги</a><a href="#gallery" data-i18n="work">Работы</a><a href="#contacts" data-i18n="contacts">Контакты</a></nav>
+  <div class="top-actions"><div data-nx-lang></div><a class="btn sm outline" href="#booking" data-i18n="book_now">Записаться</a></div>
+</div></header>
+<main class="bento">
+
+  <!-- Фото: images/hero.jpg. Пока файла нет, показывается заглушка hero.svg -->
+  <section class="tile hero s12" id="home">
+    <div class="photo"><img src="images/hero.jpg" alt="BLACK BARBER"></div>
+    <div class="body">
+      <h1>BLACK BARBER</h1>
+      <p data-i18n="premium_barbershop_in_burgas_h">Барбершоп премиум-класса в Бургасе. Стрижки, борода и уход. Работаем с понедельника по субботу.</p>
+      <div class="cta-row"><a class="btn" href="#booking" data-i18n="book_online">Записаться онлайн</a><a class="btn ghost" href="#services" data-i18n="services_and_prices">Услуги и цены</a></div>
+    </div>
+  </section>
+
+  <!-- О нас: фото салона images/interior.jpg и мастера -->
+  <section class="tile about s6 tall" id="about">
+    <img class="cover" src="images/interior.jpg" alt="Интерьер барбершопа BLACK BARBER">
+    <div class="body top">
+      <h2 data-i18n="about_the_barbershop">О барбершопе</h2>
+      <p data-i18n="black_barber_is_a_barbershop_i">BLACK BARBER — барбершоп в центре Бургаса, где классические техники встречаются с современным уходом. Мы не торопимся: каждому гостю — своё время, консультация и точная работа мастера.</p>
+      <h3 class="sub" data-i18n="barber_masters_title">Мастера</h3>
+      <div class="masters">
+        <div class="master"><img src="images/master1.jpg" alt="Георги Петров"><div><b data-i18n="barber_master_1_name">Георги Петров</b><span data-i18n="barber_master_1_desc">Барбер, 6 лет опыта</span></div></div>
+        <div class="master"><img src="images/master2.jpg" alt="Мария Димитрова"><div><b data-i18n="barber_master_2_name">Мария Димитрова</b><span data-i18n="barber_master_2_desc">Колорист, 4 года опыта</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Услуги. Новая услуга: скопируйте один блок <article class="tile svc ..."> целиком -->
+  <article class="tile svc s3 tall" id="services">
+    <div class="photo"><img src="images/svc-men.jpg" alt=""></div>
+    <div class="body"><h3 data-i18n="men_s_haircut">Мужская стрижка</h3><p data-i18n="haircut_consultation_hair_wash">Стрижка, консультация, мытьё головы, укладка.</p><span class="price">15 €</span></div>
+  </article>
+  <article class="tile svc s3 tall">
+    <div class="photo"><img src="images/svc-women.jpg" alt=""></div>
+    <div class="body"><h3 data-i18n="women_s_haircut">Женская стрижка</h3><p data-i18n="haircut_hair_wash_styling">Стрижка, мытьё головы, укладка.</p><span class="price">25 €</span></div>
+  </article>
+  <article class="tile svc s6 wide">
+    <div class="photo"><img src="images/svc-color.jpg" alt=""></div>
+    <div class="body"><h3 data-i18n="hair_coloring">Окрашивание</h3><p data-i18n="shade_selection_and_aftercare">Подбор оттенка и уход после окрашивания.</p><span class="price" data-i18n="from_40">от 40 €</span></div>
+  </article>
+  <article class="tile svc s6 wide">
+    <div class="photo"><img src="images/svc-beard.jpg" alt=""></div>
+    <div class="body"><h3 data-i18n="beard">Борода</h3><p data-i18n="shaping_hot_towel_oil">Форма, горячее полотенце, масло.</p><span class="price">10 €</span><p class="combo"><span data-i18n="haircut_beard">Стрижка + борода:</span> <b data-option="Стрижка + борода">22 €</b></p></div>
+  </article>
+
+  <section class="tile booking s12" id="booking">
+    <h2 data-i18n="barber_booking_title">Забронировать время</h2>
+    <form id="form" novalidate>
+      <label><span data-i18n="name">Имя</span> <input type="text" name="name" autocomplete="name"></label>
+      <label><span data-i18n="phone">Телефон</span> <input type="tel" name="phone" autocomplete="tel"></label>
+      <label><span data-i18n="service">Услуга</span> <select name="service" id="service"></select></label>
+      <label><span data-i18n="master">Мастер</span> <select name="master" id="master"></select></label>
+      <div class="field">
+        <span class="lbl" data-i18n="date">Дата</span>
+        <button type="button" class="timebtn" id="dateBtn" aria-expanded="false" data-i18n="select_a_date">Выберите дату</button>
+        <div class="slots days" id="days" hidden></div>
+        <input type="hidden" name="date" id="date">
+      </div>
+      <div class="field">
+        <span class="lbl" data-i18n="time">Время</span>
+        <button type="button" class="timebtn" id="timeBtn" aria-expanded="false" data-i18n="select_a_date_first">Сначала выберите дату</button>
+        <div class="slots" id="slots" hidden></div>
+        <input type="hidden" name="time" id="time">
+      </div>
+      <button class="btn" type="submit" data-i18n="barber_send_btn">Отправить заявку</button>
+    </form>
+    <p id="result" role="status"></p>
+  </section>
+
+<section class="gallery s12" id="gallery" aria-label="Наши работы" data-i18n-aria="our_work">
+  <h2 class="gtitle" data-i18n="our_work">Наши работы</h2>
+  <figure class="work"><img src="images/work1.jpg" alt="Наши работы" data-i18n-alt="our_work" loading="lazy"></figure>
+  <figure class="work"><img src="images/work2.jpg" alt="Наши работы" data-i18n-alt="our_work" loading="lazy"></figure>
+  <figure class="work"><img src="images/work3.jpg" alt="Наши работы" data-i18n-alt="our_work" loading="lazy"></figure>
+  <figure class="work"><img src="images/work4.jpg" alt="Наши работы" data-i18n-alt="our_work" loading="lazy"></figure>
+  <figure class="work"><img src="images/work5.jpg" alt="Наши работы" data-i18n-alt="our_work" loading="lazy"></figure>
+  <figure class="work"><img src="images/work6.jpg" alt="Наши работы" data-i18n-alt="our_work" loading="lazy"></figure>
+</section>
+
+<section class="tile contacts s5" id="contacts">
+  <h2 data-i18n="contacts">Контакты</h2>
+  <dl>
+    <dt data-i18n="phone">Телефон</dt><dd><a href="tel:+359000000000">+359 00 000 0000</a></dd>
+    <dt data-i18n="email">Почта</dt><dd><a href="mailto:demo@example.com">demo@example.com</a></dd>
+    <dt data-i18n="address">Адрес</dt><dd data-i18n="burgas_aleksandrovska_st_1" data-nx-geo="full">г. Бургас, ул. Александровская, д. 1</dd>
+    <dt data-i18n="opening_hours">Часы работы</dt><dd><span data-i18n="mon_fri_10_00_20_00">Пн–Пт 10:00–20:00</span><br><span data-i18n="sat_10_00_18_00">Сб 10:00–18:00</span><br><span class="note" data-i18n="sun_closed">Вс выходной</span></dd>
+  </dl>
+</section>
+
+  <!-- Карта Google Maps. Чтобы сменить точку, поменяйте 42.4958,27.4715 (широта,долгота) в двух местах -->
+  <section class="tile map s7">
+    <iframe title="Карта: BLACK BARBER, Бургас" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
+      src="https://maps.google.com/maps?q=42.4958,27.4715&amp;z=16&amp;hl=ru&amp;output=embed"></iframe>
+    <div class="map-bar">
+      <p data-i18n="burgas_aleksandrovska_st_1" data-nx-geo="full">г. Бургас, ул. Александровская, д. 1</p>
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=42.4958,27.4715" target="_blank" rel="noopener" data-i18n="open_map">Открыть карту</a>
+    </div>
+  </section>
+
+  <section class="tile social s12">
+    <h2 data-i18n="follow_us">Мы в соцсетях</h2>
+    <p><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Instagram</a><a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>Telegram</a><a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>TikTok</a></p>
+  </section>
+</main>
+<footer class="copy" data-i18n="2026_black_barber_all_rights_r">© 2026 BLACK BARBER. Все права защищены.</footer>
+<script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en" data-i18n-title="page_title">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nexus Studio — modern websites for business</title>
+<meta name="description" content="Nexus Studio: сайты-визитки и сайты для бизнеса. Стильный дизайн, мобильная версия и помощь с публикацией.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Hanken+Grotesk:wght@400;500;600&family=Noto+Sans+Arabic:wght@400;600;700&family=Noto+Sans+Hebrew:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0a; --surface:#111; --line:rgba(255,255,255,.1); --line2:rgba(255,255,255,.22);
+  --text:#ededed; --muted:#8c8c8c; --white:#fff;
+  --display:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;
+  --body:'Hanken Grotesk','Segoe UI',system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;
+  padding-bottom:env(safe-area-inset-bottom);
+  transition:opacity .35s ease,transform .35s ease;
+}
+body.leaving{opacity:0;transform:translateY(-8px)}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--white);outline-offset:3px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 clamp(18px,4vw,32px)}
+section{padding:clamp(64px,10vw,120px) 0}
+h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.025em;line-height:1.08}
+h2{font-size:clamp(1.9rem,4.4vw,3rem);margin-bottom:14px}
+.sec-sub{color:var(--muted);max-width:52ch;margin-bottom:clamp(30px,5vw,52px)}
+
+/* Кнопки */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;height:50px;padding:0 26px;border-radius:99px;
+  font:600 .98rem var(--body);cursor:pointer;border:1px solid var(--line2);background:transparent;color:var(--text);
+  transition:background .3s,color .3s,border-color .3s,transform .3s var(--ease);
+}
+.btn:hover{transform:translateY(-2px);border-color:var(--white)}
+.btn.solid{background:var(--white);color:#0a0a0a;border-color:var(--white)}
+.btn.solid:hover{background:#d9d9d9}
+.btn svg{width:16px;height:16px;transition:transform .3s var(--ease)}
+.btn:hover svg{transform:translate(3px,-3px)}
+
+/* Шапка */
+header{
+  position:fixed;inset:0 0 auto;z-index:50;padding-top:env(safe-area-inset-top);
+  background:rgba(10,10,10,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
+/* Логотип: положите logo.png (или logo.svg) рядом с index.html. Пока файла нет, показывается текстовая версия */
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:-.02em}
+.logo img{height:28px;width:auto;display:block;transition:transform .5s var(--ease)}
+.logo:hover img{transform:rotate(-6deg) scale(1.06)}
+.menu{display:flex;gap:30px;font-size:.95rem;color:var(--muted)}
+.menu a{position:relative;transition:color .25s}
+.menu a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--white);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.menu a:hover{color:var(--white)}
+.menu a:hover::after{transform:scaleX(1)}
+.nav-end{display:flex;align-items:center;gap:12px}
+.nav .btn{height:42px;padding:0 20px;font-size:.9rem}
+
+/* Hero */
+.hero{
+  position:relative;min-height:100svh;display:flex;align-items:center;padding:120px 0 80px;
+}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:linear-gradient(#000 60%,transparent);mask-image:linear-gradient(#000 60%,transparent)}
+.hero::before{z-index:0;content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(520px circle at var(--mx,70%) var(--my,30%),rgba(255,255,255,.09),transparent 70%)}
+.hero{overflow:clip}
+.hero .wrap{position:relative;z-index:1}
+.mark-bg{position:absolute;inset-inline-end:max(4vw,calc(50% - 560px));top:50%;height:min(62vh,520px);width:auto;transform:translateY(-46%);opacity:.07;pointer-events:none;z-index:0}
+.hero h1{font-size:clamp(2.6rem,8.4vw,6.6rem);max-width:13ch;margin-bottom:26px}
+.hero p{font-size:clamp(1.05rem,2.2vw,1.3rem);color:var(--muted);max-width:44ch;margin-bottom:38px}
+.actions{display:flex;gap:14px;flex-wrap:wrap}
+
+/* Проекты */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2.4vw,28px)}
+.card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:20px;padding:14px;background:var(--surface);
+  transition:border-color .4s,transform .5s var(--ease)}
+.card:hover{border-color:var(--line2);transform:translateY(-6px)}
+.win{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#0d0d0d}
+.bar{display:flex;align-items:center;gap:6px;padding:9px 12px;border-bottom:1px solid var(--line)}
+.bar i{width:8px;height:8px;border-radius:50%;background:#2c2c2c}
+.bar span{margin-inline-start:10px;font-size:.78rem;color:var(--muted)}
+.view{position:relative;aspect-ratio:16/10;overflow:hidden;background:#0d0d0d}
+.view iframe{position:absolute;top:0;left:0;width:1280px;height:800px;border:0;transform-origin:0 0;transform:scale(.28);pointer-events:none;
+  filter:grayscale(1) contrast(1.05);transition:filter .6s}
+.view::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(transparent 40%,rgba(10,10,10,.55));transition:opacity .5s}
+.card:hover .view iframe{filter:grayscale(0)}
+.card:hover .view::after{opacity:0}
+.view a{position:absolute;inset:0;z-index:2}
+.info{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:20px 8px 8px}
+.info h3{font-size:1.35rem;margin-bottom:2px}
+.tag{font-size:.9rem;color:var(--muted)}
+.info .btn{height:44px;padding:0 22px;font-size:.92rem}
+
+/* Обо мне и услуги */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,90px);align-items:start}
+.about p{font-size:clamp(1.15rem,2.2vw,1.45rem);line-height:1.45;color:var(--text);max-width:24ch;font-family:var(--display);font-weight:500}
+.list{list-style:none;border-top:1px solid var(--line)}
+.list li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;border-bottom:1px solid var(--line);font-size:1.08rem;transition:padding .4s var(--ease),color .3s}
+.list li::after{content:"+";font-size:1.4rem;color:var(--muted);transition:transform .4s var(--ease),color .3s}
+.list li:hover{padding-inline-start:12px}
+.list li:hover::after{transform:rotate(90deg);color:var(--white)}
+
+/* Тарифы */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,24px);align-items:stretch}
+.plan{display:flex;flex-direction:column;padding:clamp(24px,3vw,34px);border:1px solid var(--line);border-radius:20px;background:var(--surface);
+  transition:border-color .4s,transform .5s var(--ease)}
+.plan:hover{border-color:var(--line2);transform:translateY(-6px)}
+.plan.hot{background:var(--white);color:#0a0a0a;border-color:var(--white)}
+.plan.hot .muted,.plan.hot li{color:#3a3a3a}
+.plan h3{font-size:1rem;letter-spacing:.02em;margin-bottom:18px;font-weight:600}
+.price{font-family:var(--display);font-weight:700;font-size:clamp(1.9rem,3.4vw,2.5rem);letter-spacing:-.03em;line-height:1.1;margin-bottom:6px}
+.plan .name{font-weight:600;margin:14px 0 8px}
+.muted{color:var(--muted);font-size:.96rem}
+.plan ul{list-style:none;margin-top:18px;display:grid;gap:8px;font-size:.94rem;color:var(--muted)}
+.plan ul li{padding-inline-start:20px;position:relative}
+.plan ul li::before{content:"";position:absolute;inset-inline-start:0;top:.7em;width:10px;height:1px;background:currentColor}
+.fine{margin-top:26px;font-size:.82rem;color:var(--muted)}
+
+/* Поддержка */
+.support{display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(24px,5vw,70px);align-items:center;padding:clamp(26px,4vw,48px);
+  border:1px solid var(--line);border-radius:24px;background:var(--surface);transition:border-color .4s}
+.support:hover{border-color:var(--line2)}
+.support h3{font-size:1rem;font-weight:600;margin-bottom:18px}
+.support .price span{font-size:.45em;font-weight:500;color:var(--muted);letter-spacing:0}
+.support ul{list-style:none;display:grid;gap:0;border-top:1px solid var(--line)}
+.support li{padding:16px 0;border-bottom:1px solid var(--line)}
+.support li b{display:block;font-weight:600}
+.support li span{color:var(--muted);font-size:.94rem}
+
+/* Контакты */
+.contact{border-top:1px solid var(--line)}
+.contact .split{align-items:center}
+.mail{display:inline-block;font-family:var(--display);font-weight:700;font-size:clamp(1.15rem,3.4vw,2rem);letter-spacing:-.02em;word-break:break-word;
+  background:linear-gradient(var(--white),var(--white)) 0 100%/0 1px no-repeat;transition:background-size .5s var(--ease);padding-bottom:4px}
+.mail:hover{background-size:100% 1px}
+.socials{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.socials a{width:48px;height:48px;border-radius:50%;border:1px solid var(--line2);display:grid;place-items:center;transition:background .3s,color .3s,transform .3s var(--ease)}
+.socials a:hover,.socials a:focus-visible{background:var(--white);color:#0a0a0a;transform:translateY(-3px) scale(1.1)}
+.socials svg{width:20px;height:20px}
+form{display:grid;gap:14px}
+input,textarea{width:100%;font:inherit;color:var(--text);background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;transition:border-color .3s}
+input:focus,textarea:focus{outline:none;border-color:var(--white)}
+textarea{min-height:120px;resize:vertical}
+form .btn{justify-self:start}
+.status{min-height:1.4em;font-size:.92rem;color:var(--muted)}
+.status.ok{color:#fff}.status.err{color:#ff9d9d}
+footer{border-top:1px solid var(--line);padding:34px 0 38px;color:var(--muted);font-size:.88rem}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px 24px;flex-wrap:wrap}
+.foot-logo{height:88px;width:auto;opacity:.9;margin-inline-end:auto}
+
+/* WhatsApp: окно с QR-кодом */
+.wa-modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;background:rgba(0,0,0,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);opacity:0;transition:opacity .3s ease}
+.wa-modal[hidden]{display:none}
+.wa-modal.open{opacity:1}
+.wa-card{position:relative;width:min(100%,380px);max-height:100%;overflow:auto;padding:36px 28px 28px;text-align:center;background:var(--surface);border:1px solid var(--line2);border-radius:24px;box-shadow:0 30px 80px rgba(0,0,0,.6);transform:translateY(14px) scale(.97);transition:transform .35s var(--ease)}
+.wa-modal.open .wa-card{transform:none}
+.wa-card h3{font-size:1.3rem;margin-bottom:6px;padding-inline:26px}
+.wa-sub{color:var(--muted);font-size:.95rem;margin-bottom:20px}
+.wa-qr{display:block;width:min(100%,240px);height:auto;aspect-ratio:1;margin:0 auto 22px;border-radius:18px}
+.wa-close{position:absolute;top:12px;inset-inline-end:12px;width:38px;height:38px;padding:0;border-radius:50%;border:1px solid var(--line2);background:transparent;color:var(--text);font:400 1.5rem/1 var(--body);cursor:pointer;display:grid;place-items:center;transition:background .25s,color .25s,transform .3s var(--ease)}
+.wa-close:hover,.wa-close:focus-visible{background:var(--white);color:#0a0a0a;transform:rotate(90deg)}
+.wa-open{width:100%}
+body.wa-lock{overflow:hidden}
+
+/* Кнопка «Наверх» */
+.to-top{position:fixed;inset-inline-end:max(18px,env(safe-area-inset-right));bottom:calc(18px + env(safe-area-inset-bottom));z-index:60;width:46px;height:46px;border-radius:50%;
+  display:grid;place-items:center;cursor:pointer;color:var(--text);background:rgba(17,17,17,.7);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid var(--line2);
+  opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .35s,transform .35s var(--ease),background .3s,color .3s}
+.to-top.show{opacity:1;transform:none;pointer-events:auto}
+.to-top:hover{background:var(--white);color:#0a0a0a;transform:translateY(-3px)}
+.to-top svg{width:18px;height:18px}
+
+/* Арабский (RTL) */
+html[lang=ar]{--display:'Noto Sans Arabic','Segoe UI',Tahoma,sans-serif;--body:'Noto Sans Arabic','Segoe UI',Tahoma,sans-serif}
+[dir=rtl] *{letter-spacing:0!important}
+[dir=rtl] .menu a::after{transform-origin:right}
+.view{direction:ltr}
+
+/* Языки с другой письменностью: шрифты, межбуквенные интервалы, переносы длинных слов */
+html[lang=he]{--display:'Noto Sans Hebrew','Segoe UI',Arial,sans-serif;--body:'Noto Sans Hebrew','Segoe UI',Arial,sans-serif}
+html[lang=ja]{--display:'Hiragino Sans','Yu Gothic','Noto Sans JP',Meiryo,sans-serif;--body:'Hiragino Sans','Yu Gothic','Noto Sans JP',Meiryo,sans-serif}
+html[lang=ko]{--display:'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif;--body:'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif}
+html[lang=zh-CN]{--display:'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;--body:'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif}
+html[lang=hi]{--display:'Noto Sans Devanagari','Nirmala UI',Mangal,sans-serif;--body:'Noto Sans Devanagari','Nirmala UI',Mangal,sans-serif}
+html[lang=ja] *,html[lang=ko] *,html[lang=zh-CN] *,html[lang=hi] *,html[lang=he] *{letter-spacing:0!important}
+h1,h2,h3,p,li,.btn{overflow-wrap:break-word;hyphens:auto}
+.logo,.menu a{hyphens:none}
+
+/* Плавное появление (только если включён JS) */
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s var(--ease);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+
+@media (max-width:900px){
+  .plans{grid-template-columns:1fr}
+  .split,.support{grid-template-columns:1fr}
+  .about p{max-width:30ch}
+}
+@media (max-width:720px){
+  .menu{display:none}
+  .nav .btn{display:none}
+  .grid{grid-template-columns:1fr}
+  .hero{padding-top:100px}
+  .mark-bg{height:300px;inset-inline-end:-40px;opacity:.06}
+  .actions .btn{flex:1 1 100%}
+  .info .btn{width:100%}
+  form .btn{justify-self:stretch}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
+<script src="../lang.js"></script>
+<style>.nx-pending body{visibility:hidden}</style>
+<script>document.documentElement.classList.add("nx-pending");setTimeout(function(){document.documentElement.classList.remove("nx-pending")},2000)</script>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="Nexus Studio">
+      <img src="logo-mark.png" alt="">
+      <span class="wm">Nexus Studio</span>
+    </a>
+    <nav class="menu" aria-label="Menu">
+      <a href="#projects" data-i18n="nav_projects">Projects</a><a href="#about" data-i18n="nav_services">Services</a><a href="#pricing" data-i18n="nav_pricing">Pricing</a><a href="#contacts" data-i18n="nav_contacts">Contact</a>
+    </nav>
+    <div class="nav-end"><div data-nx-lang></div>
+    <a class="btn solid" href="#contacts" data-i18n="cta_discuss">Discuss a project</a></div>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero" id="home">
+    <img class="mark-bg" src="logo-mark.png" alt="" aria-hidden="true">
+    <div class="wrap">
+      <h1 class="rv" data-i18n="hero_h1">I create modern websites for business</h1>
+      <p class="rv" style="--d:.1s" data-i18n="hero_sub">Stylish design, a convenient mobile version and help with publishing your site</p>
+      <div class="actions rv" style="--d:.2s">
+        <a class="btn solid" href="#projects" data-i18n="cta_view">View projects</a>
+        <a class="btn" href="#contacts" data-i18n="cta_discuss">Discuss a project</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <h2 class="rv" data-i18n="projects_title">My projects</h2>
+      <p class="sec-sub rv" data-i18n="projects_sub">Four websites for different niches. Click any of them to open it in full.</p>
+
+      <!-- Для каждой карточки: папка проекта лежит рядом с папкой portfolio. Регистр имён папок важен. -->
+      <div class="grid">
+        <article class="card rv">
+          <div class="win">
+            <div class="bar"><i></i><i></i><i></i><span>barber/</span></div>
+            <div class="view"><iframe src="../barber/index.html?lang=en" title="Превью: BLACK BARBER" loading="lazy" tabindex="-1" aria-hidden="true"></iframe><a class="go" href="../barber/index.html" tabindex="-1" aria-hidden="true"></a></div>
+          </div>
+          <div class="info">
+            <div><h3>BLACK BARBER</h3><span class="tag" data-i18n="tag_barber">Barbershop</span></div>
+            <a class="btn go" href="../barber/index.html"><span data-i18n="open_site">Open site</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          </div>
+        </article>
+
+        <article class="card rv" style="--d:.08s">
+          <div class="win">
+            <div class="bar"><i></i><i></i><i></i><span>gym/</span></div>
+            <div class="view"><iframe src="../gym/index.html?lang=en" title="Превью: FITNESS CLUB" loading="lazy" tabindex="-1" aria-hidden="true"></iframe><a class="go" href="../gym/index.html" tabindex="-1" aria-hidden="true"></a></div>
+          </div>
+          <div class="info">
+            <div><h3>FITNESS CLUB</h3><span class="tag" data-i18n="tag_gym">Fitness club</span></div>
+            <a class="btn go" href="../gym/index.html"><span data-i18n="open_site">Open site</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          </div>
+        </article>
+
+        <article class="card rv">
+          <div class="win">
+            <div class="bar"><i></i><i></i><i></i><span>bakery/</span></div>
+            <div class="view"><iframe src="../bakery/index.html?lang=en" title="Превью: CAFE" loading="lazy" tabindex="-1" aria-hidden="true"></iframe><a class="go" href="../bakery/index.html" tabindex="-1" aria-hidden="true"></a></div>
+          </div>
+          <div class="info">
+            <div><h3>CAFE</h3><span class="tag" data-i18n="tag_cafe">Café / bakery</span></div>
+            <a class="btn go" href="../bakery/index.html"><span data-i18n="open_site">Open site</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          </div>
+        </article>
+
+        <article class="card rv" style="--d:.08s">
+          <div class="win">
+            <div class="bar"><i></i><i></i><i></i><span>detailing/</span></div>
+            <div class="view"><iframe src="../detailing/index.html?lang=en" title="Превью: DETAILING &amp; CAR WASH" loading="lazy" tabindex="-1" aria-hidden="true"></iframe><a class="go" href="../detailing/index.html" tabindex="-1" aria-hidden="true"></a></div>
+          </div>
+          <div class="info">
+            <div><h3>DETAILING &amp; CAR WASH</h3><span class="tag" data-i18n="tag_detailing">Car wash &amp; detailing</span></div>
+            <a class="btn go" href="../detailing/index.html"><span data-i18n="open_site">Open site</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap split">
+      <div class="about">
+        <h2 class="rv" data-i18n="about_title">About me</h2>
+        <p class="rv" style="--d:.1s" data-i18n="about_text">I create convenient and stylish websites on absolutely any topic for your business.</p>
+      </div>
+      <div>
+        <h2 class="rv" data-i18n="services_title">What I offer</h2>
+        <ul class="list rv" style="--d:.1s">
+          <li data-i18n="svc1">Business card website creation</li>
+          <li data-i18n="svc2">Design and mobile adaptation</li>
+          <li data-i18n="svc3">Publishing your site online</li>
+          <li data-i18n="svc4">Updating texts, photos and prices</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="wrap">
+      <h2 class="rv" data-i18n="pricing_title">Pricing and plans</h2>
+      <p class="sec-sub rv" data-i18n="pricing_sub">Three clear formats. We’ll pick the right one for your task.</p>
+      <div class="plans">
+        <article class="plan rv">
+          <h3>START</h3>
+          <div class="price">€50 – €80</div>
+          <p class="name" data-i18n="start_name">Simple business card website</p>
+          <p class="muted" data-i18n="start_desc">One page, business info, services, prices, contacts and mobile adaptation.</p>
+        </article>
+        <article class="plan hot rv" style="--d:.08s">
+          <h3>BUSINESS</h3>
+          <div class="price">€100 – €180</div>
+          <p class="name" data-i18n="biz_name">Full business website</p>
+          <p class="muted" data-i18n="biz_desc">Several sections, gallery, services, interactive map, contacts and interactivity.</p>
+        </article>
+        <article class="plan rv" style="--d:.16s">
+          <h3>CUSTOM</h3>
+          <div class="price" data-i18n="custom_price">From €200</div>
+          <p class="name" data-i18n="custom_name">A more complex project</p>
+          <p class="muted" data-i18n="custom_desc">Product catalog, additional features and a complex structure. Price after discussing the task.</p>
+        </article>
+      </div>
+      <p class="fine rv" data-i18n="price_note">* The final price for each website is agreed individually before work begins.</p>
+    </div>
+  </section>
+
+  <section id="support" style="padding-top:0">
+    <div class="wrap">
+      <div class="support rv">
+        <div>
+          <h3 data-i18n="support_title">WEBSITE SUPPORT</h3>
+          <div class="price">€20 – €40 <span data-i18n="support_per">/ month</span></div>
+          <p class="muted" data-i18n="support_desc">Monthly maintenance of a finished website. The fee depends on the amount of work.</p>
+        </div>
+        <ul>
+          <li><b data-i18n="sup1_t">Regular content updates</b><span data-i18n="sup1_d">Prices, texts and photos</span></li>
+          <li><b data-i18n="sup2_t">Website monitoring</b><span data-i18n="sup2_d">I make sure the site opens and works without failures</span></li>
+          <li><b data-i18n="sup3_t">Bug fixing</b><span data-i18n="sup3_d">I quickly resolve issues when they appear</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contacts">
+    <div class="wrap split">
+      <div>
+        <h2 class="rv" data-i18n="contact_title">Let’s discuss your project</h2>
+        <p class="sec-sub rv" style="margin-bottom:24px" data-i18n="contact_sub">Write by email or on social media. I’ll reply and suggest a suitable option.</p>
+        <a class="mail rv" href="mailto:nexusstudio.universe@gmail.com">nexusstudio.universe@gmail.com</a>
+        <div class="socials rv">
+          <a href="https://t.me/+hPvoKKVua4s3ODJk" target="_blank" rel="noopener noreferrer" aria-label="Telegram" title="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.6 19.6c-.2 1-.9 1.3-1.7.8l-4.8-3.6-2.3 2.2c-.3.3-.5.5-1 .5l.4-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.5 13.3 1.8 11.8c-1-.3-1-1 .2-1.5L20.4 3.2c.9-.3 1.6.2 1.5 1.1z"/></svg></a>
+          <a href="https://tiktok.com/@nexusstudio_universe?_r=1&amp;_t=ZN-9ASveT5iZug" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 2h-3.2v13.1a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .8.1V9a6.1 6.1 0 1 0 5.3 6V8.6a7.4 7.4 0 0 0 4.3 1.4V6.8A4.3 4.3 0 0 1 16.6 2z"/></svg></a>
+          <a href="https://www.instagram.com/nexusstudio.universe/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61594157520653" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.2h-3.1V7.9c0-.9.3-1.5 1.6-1.5h1.6V3.6c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.3H7.8V13h2.7v8h3z"/></svg></a><a href="https://wa.me/qr/IAWOKZWZHLDZK1" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" data-i18n-aria="whatsapp_chat" title="WhatsApp" data-wa-open aria-haspopup="dialog" aria-controls="waModal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-4.85A8.5 8.5 0 1 1 8 19.4L3 21z"/><path d="M9.2 9.6c.2 2.9 2.4 5 5.3 5.3l1.2-1.3a.8.8 0 0 0 0-1.1l-1.3-.8a.8.8 0 0 0-1 .1l-.5.5a3.8 3.8 0 0 1-1.6-1.6l.5-.5a.8.8 0 0 0 .1-1l-.8-1.3a.8.8 0 0 0-1.1 0L9.2 9.6z"/></svg></a>
+        </div>
+      </div>
+      <form id="form" class="rv" style="--d:.1s" novalidate>
+        <input type="text" name="name" id="fname" placeholder="Your name" data-i18n-placeholder="ph_name" autocomplete="name" data-i18n-aria="ph_name" aria-label="Your name" required>
+        <input type="text" name="contact" id="fcontact" placeholder="Phone, Telegram or email" data-i18n-placeholder="ph_contact" autocomplete="off" data-i18n-aria="ph_contact" aria-label="Phone, Telegram or email" required>
+        <textarea name="message" id="fmsg" placeholder="Briefly describe your task" data-i18n-placeholder="ph_msg" data-i18n-aria="ph_msg" aria-label="Briefly describe your task" required></textarea>
+        <button class="btn solid" type="submit" data-i18n="btn_send">Send message</button>
+        <p class="status" id="status" role="status" aria-live="polite"></p>
+        <p class="muted" style="font-size:.88rem"><span data-i18n="direct">Or write directly:</span> <a href="mailto:nexusstudio.universe@gmail.com" style="text-decoration:underline">nexusstudio.universe@gmail.com</a></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img class="foot-logo" src="logo.png" alt="Nexus Studio">
+    <span>© <span id="year">2026</span> Nexus Studio</span>
+    <a href="mailto:nexusstudio.universe@gmail.com">nexusstudio.universe@gmail.com</a>
+  </div>
+</footer>
+
+<div class="wa-modal" id="waModal" role="dialog" aria-modal="true" aria-labelledby="waTitle" hidden>
+  <div class="wa-card">
+    <button class="wa-close" type="button" data-wa-close aria-label="Close" data-i18n-aria="close"><span aria-hidden="true">&times;</span></button>
+    <h3 id="waTitle" data-i18n="wa_title">Scan to chat on WhatsApp</h3>
+    <p class="wa-sub" data-i18n="wa_sub">Point your phone camera at the code</p>
+    <img class="wa-qr" src="whatsapp-qr.png" width="240" height="240" alt="WhatsApp QR code" data-i18n-alt="wa_qr_alt">
+    <a class="btn solid wa-open" href="https://wa.me/qr/IAWOKZWZHLDZK1" target="_blank" rel="noopener noreferrer" data-i18n="wa_open_app">Open in app</a>
+  </div>
+</div>
+
+<button class="to-top" id="toTop" type="button" data-i18n-aria="totop" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+
+<script>
+(function () {
+  document.documentElement.classList.add('js');
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Если файл логотипа не найден, остаётся текстовая версия
+  var lg = document.querySelector('.logo img');
+  lg.addEventListener('error', function () { lg.remove(); });
+
+  // Масштаб превью-окон: сайт 1280px вписывается в ширину карточки
+  document.querySelectorAll('.view').forEach(function (v) {
+    var f = v.querySelector('iframe');
+    function fit() { f.style.transform = 'scale(' + v.clientWidth / 1280 + ')'; }
+    fit();
+    if (window.ResizeObserver) new ResizeObserver(fit).observe(v); else window.addEventListener('resize', fit);
+  });
+
+  // Плавное появление блоков
+  var rv = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: .12 });
+    rv.forEach(function (el) { io.observe(el); });
+  } else rv.forEach(function (el) { el.classList.add('in'); });
+
+  // Плавный переход на страницу проекта
+  document.querySelectorAll('a.go').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      e.preventDefault();
+      document.body.classList.add('leaving');
+      setTimeout(function () { location.href = a.href; }, 350);
+    });
+  });
+  window.addEventListener('pageshow', function () { document.body.classList.remove('leaving'); });
+
+  // WhatsApp: окно с QR-кодом (закрытие: крестик, клик по фону, Esc)
+  var wa = document.getElementById('waModal'), waTrig = null, waTimer;
+  if (wa) {
+    var waLock = function (on) {
+      var sw = window.innerWidth - document.documentElement.clientWidth;
+      document.body.classList.toggle('wa-lock', on);
+      document.body.style.paddingRight = on && sw > 0 ? sw + 'px' : '';
+    };
+    var waOpen = function (trigger) {
+      clearTimeout(waTimer); waTrig = trigger; wa.hidden = false; waLock(true);
+      requestAnimationFrame(function () { wa.classList.add('open'); });
+      wa.querySelector('.wa-close').focus();
+    };
+    var waClose = function () {
+      clearTimeout(waTimer); wa.classList.remove('open');
+      waTimer = setTimeout(function () { wa.hidden = true; waLock(false); if (waTrig) waTrig.focus(); }, 280);
+    };
+    document.querySelectorAll('[data-wa-open]').forEach(function (a) {
+      a.addEventListener('click', function (e) { e.preventDefault(); waOpen(a); });
+    });
+    wa.addEventListener('click', function (e) { if (e.target === wa || e.target.closest('[data-wa-close]')) waClose(); });
+    document.addEventListener('keydown', function (e) {
+      if (wa.hidden) return;
+      if (e.key === 'Escape') { e.preventDefault(); waClose(); return; }
+      if (e.key !== 'Tab') return;
+      var f = [].slice.call(wa.querySelectorAll('a[href],button:not([disabled])'));
+      if (!f.length) return;
+      if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+    });
+  }
+
+  // Кнопка «Наверх»
+  var up = document.getElementById('toTop');
+  function toggleUp() { up.classList.toggle('show', window.scrollY > 600); }
+  window.addEventListener('scroll', toggleUp, { passive: true }); toggleUp();
+  up.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  });
+
+  // Мягкая подсветка в hero за курсором
+  var hero = document.querySelector('.hero');
+  hero.addEventListener('pointermove', function (e) {
+    var r = hero.getBoundingClientRect();
+    hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  });
+
+  // Форма: по клику открывается почтовая программа с готовым письмом
+  var EMAIL = 'nexusstudio.universe@gmail.com';
+  var form = document.getElementById('form'), st = document.getElementById('status');
+  function say(t, c, html) { if (html) st.innerHTML = t; else st.textContent = t; st.className = 'status ' + (c || ''); }
+  function T(k) { return window.NX ? NX.t(k) : k; }
+  document.addEventListener('nexus:lang', function () { say(''); });
+  var mailLink = '<a href="mailto:' + EMAIL + '" style="text-decoration:underline">' + EMAIL + '</a>';
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var n = form.name.value.trim(), c = form.contact.value.trim(), m = form.message.value.trim();
+    if (!n || !c || !m) { say(T('msg_fill'), 'err'); return; }
+    var body = T('lbl_name') + ': ' + n + '\n' + T('lbl_contact') + ': ' + c + '\n\n' + m;
+    location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(T('mail_subject')) + '&body=' + encodeURIComponent(body);
+    say(T('msg_open') + ' ' + mailLink, 'ok', true);
+  });
+})();
+</script>
+</body>
+</html>

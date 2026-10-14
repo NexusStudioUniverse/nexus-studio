@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ru" data-nx-reload>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="car_wash_and_detailing_studio_">Апекс Детейлинг — автомойка и детейлинг-студия в Бургасе</title>
+<meta name="description" content="Бесконтактная мойка, химчистка салона, полировка и керамика в Бургасе. Онлайн-запись.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0f12; --bg2:#14171c; --card:#191d23; --line:#2a3039;
+  --text:#eef1f5; --muted:#8e98a6; --lime:#b8ff2c; --amber:#ffb020; --ink:#121a00;
+  --r:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:Manrope,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,.num{font-family:"Chakra Petch",Manrope,sans-serif;line-height:1.1}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+.wrap{width:min(1140px,92%);margin-inline:auto}
+section{padding:96px 0;position:relative}
+.sec-head{max-width:620px;margin-bottom:44px}
+.sec-head h2{font-size:clamp(2rem,4.6vw,3rem);font-weight:700;margin-bottom:12px}
+.sec-head p{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 28px;font-weight:700;font-size:.95rem;border:1px solid transparent;border-radius:4px;cursor:pointer;transition:transform .3s ease,box-shadow .3s ease,background-position .5s ease,border-color .3s,color .3s;font-family:"Chakra Petch",sans-serif;letter-spacing:.02em}
+.btn-primary{background:linear-gradient(100deg,#b8ff2c 0%,#b8ff2c 45%,#ffc933 100%);background-size:220% 100%;background-position:0 0;color:var(--ink)}
+.btn-ghost{background:linear-gradient(100deg,#222831 0%,#222831 45%,#33401a 100%);background-size:220% 100%;background-position:0 0;color:var(--text);border-color:var(--line)}
+@media(hover:hover){
+  .btn:hover{transform:translateY(-4px);background-position:100% 0}
+  .btn-primary:hover{box-shadow:0 8px 30px rgba(184,255,44,.45),0 0 0 1px rgba(255,201,51,.5)}
+  .btn-ghost:hover{border-color:var(--lime);color:var(--lime);box-shadow:0 8px 26px rgba(184,255,44,.2)}
+}
+.btn:active{transform:scale(.96)}
+
+/* header */
+header{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(13,15,18,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:"Chakra Petch",sans-serif;font-weight:700;font-size:1.3rem;display:flex;align-items:center;gap:10px}
+.logo svg{width:30px;height:30px}
+.menu{display:flex;gap:28px;font-size:.92rem;color:var(--muted)}
+.menu a:hover{color:var(--lime)}
+.nav .btn{padding:10px 22px}
+.burger{display:none;background:none;border:1px solid var(--line);color:var(--text);width:42px;height:42px;border-radius:6px;font-size:1.2rem;cursor:pointer}
+
+/* hero */
+.hero{min-height:100svh;display:flex;align-items:center;padding:120px 0 90px;overflow:hidden;background:#0d0f12}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;transform-origin:60% 50%;animation:heroIn 1.4s ease-out both,heroZoom 26s ease-in-out infinite alternate}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(100deg,#0d0f12 18%,rgba(13,15,18,.55) 65%,rgba(13,15,18,.8)),repeating-linear-gradient(115deg,transparent 0 46px,rgba(184,255,44,.045) 46px 47px)}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:70px;background:var(--bg);clip-path:polygon(0 100%,100% 100%,100% 0)}
+.hero .wrap{position:relative;z-index:2}
+.hero h1{font-size:clamp(2.6rem,8vw,5.6rem);font-weight:700;max-width:10em;letter-spacing:-.02em}
+.hero h1 .l{display:block;background:linear-gradient(100deg,var(--text) 38%,#fff 46%,var(--lime) 52%,var(--text) 62%);background-size:260% 100%;background-position:120% 0;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sweep 2.2s .3s ease-out forwards}
+@keyframes sweep{to{background-position:-20% 0}}
+.hero p{max-width:33em;color:#b9c1cc;margin:22px 0 32px;font-size:1.08rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:36px;margin-top:52px;color:var(--muted);font-size:.9rem}
+.hero-meta b{display:block;color:var(--lime);font-family:"Chakra Petch",sans-serif;font-size:1.5rem}
+
+/* calculator + services */
+.calc{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
+.calc input{position:absolute;opacity:0;pointer-events:none}
+.calc label{display:block;cursor:pointer;background:var(--card);border:1px solid var(--line);padding:22px 20px 18px;transition:.2s;clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,0 100%)}
+.calc label:hover{border-color:#44505f}
+.calc input:checked+label{border-color:var(--lime);background:#1b2214;box-shadow:inset 0 0 0 1px var(--lime)}
+.calc input:focus-visible+label{outline:2px solid var(--lime)}
+.calc svg{width:100%;max-width:150px;height:auto;color:var(--muted);transition:color .2s}
+.calc input:checked+label svg{color:var(--lime)}
+.calc b{display:block;font-family:"Chakra Petch",sans-serif;font-size:1.2rem;margin-top:8px}
+.calc small{color:var(--muted)}
+.grid{display:grid;gap:18px}
+.services{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--card);border:1px solid var(--line);padding:26px;transition:border-color .2s,transform .2s;border-radius:var(--r)}
+.card:hover{border-color:var(--lime);transform:translateY(-3px)}
+.card h3{font-size:1.25rem}
+.price{font-family:"Chakra Petch",sans-serif;font-size:2.3rem;font-weight:700;color:var(--lime);margin:14px 0 2px}
+.price small{font-size:.9rem;color:var(--muted);font-weight:500;margin-right:6px}
+.card ul{list-style:none;margin:16px 0 22px;color:var(--muted);font-size:.92rem}
+.card li{padding:7px 0 7px 22px;position:relative;border-top:1px solid var(--line)}
+.card li::before{content:"";position:absolute;left:2px;top:15px;width:8px;height:8px;background:var(--lime);transform:rotate(45deg)}
+.card .btn{width:100%}
+.card.hot{border-color:var(--amber)}
+.tag{display:inline-block;background:var(--amber);color:#2a1a00;font-size:.75rem;font-weight:700;padding:2px 10px;margin-bottom:10px}
+.note{margin-top:18px;color:var(--muted);font-size:.9rem}
+
+/* process tabs */
+.alt{background:var(--bg2);clip-path:polygon(0 40px,100% 0,100% calc(100% - 40px),0 100%);padding:140px 0}
+.tabs{display:grid;grid-template-columns:.8fr 1.4fr;gap:28px}
+.tablist{display:flex;flex-direction:column;gap:8px}
+.tab{text-align:left;background:transparent;border:1px solid var(--line);color:var(--muted);padding:16px 18px;cursor:pointer;font-family:"Chakra Petch",sans-serif;font-size:1.05rem;font-weight:600;display:flex;gap:14px;align-items:center;transition:.2s}
+.tab span{font-size:.85rem;opacity:.6}
+.tab:hover{color:var(--text)}
+.tab[aria-selected="true"]{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+.panel{background:var(--card);border:1px solid var(--line);padding:34px;display:none;min-height:300px;position:relative;overflow:hidden}
+.panel.on{display:block;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.panel h3{font-size:1.7rem;margin-bottom:12px}
+.panel p{color:var(--muted);max-width:34em;margin-bottom:18px}
+.panel ul{list-style:none;display:flex;flex-wrap:wrap;gap:10px}
+.panel li{border:1px solid var(--line);padding:6px 14px;font-size:.88rem;color:var(--text)}
+.panel .big{position:absolute;right:18px;bottom:-24px;font-family:"Chakra Petch",sans-serif;font-size:9rem;font-weight:700;color:rgba(184,255,44,.07);line-height:1}
+
+/* advantages: asymmetric */
+.adv{grid-template-columns:1.3fr 1fr 1fr;grid-template-rows:auto auto}
+.adv .big{grid-row:span 2;display:flex;flex-direction:column;justify-content:flex-end;min-height:340px;background:linear-gradient(160deg,#1d2616,#14171c 70%);border-color:#3a4a1c}
+.adv .big h3{font-size:2rem;margin-bottom:10px}
+.adv p{color:var(--muted);font-size:.95rem}
+.ico{width:46px;height:46px;border:1px solid var(--line);display:grid;place-items:center;font-size:1.3rem;margin-bottom:14px;color:var(--amber)}
+
+/* gallery */
+.gallery{grid-template-columns:repeat(6,1fr);grid-auto-rows:190px}
+.shot{position:relative;overflow:hidden;background:linear-gradient(135deg,#1d2530,#101318);border:1px solid var(--line)}
+.shot:nth-child(1){grid-column:span 3;grid-row:span 2}
+.shot:nth-child(2){grid-column:span 3}
+.shot:nth-child(3){grid-column:span 2}
+.shot:nth-child(4){grid-column:span 1}
+.shot:nth-child(5){grid-column:span 2}
+.shot:nth-child(6){grid-column:span 4}
+.shot img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.shot:hover img{transform:scale(1.06)}
+.shot span{position:absolute;left:0;bottom:12px;background:var(--lime);color:var(--ink);padding:3px 12px 3px 10px;font-size:.8rem;font-weight:700}
+
+/* booking */
+.book{display:grid;grid-template-columns:1.25fr .75fr;gap:28px;align-items:start}
+form{display:grid;gap:24px}
+fieldset{border:0;display:grid;gap:10px}
+legend,label.l{font-weight:700;font-size:.95rem;margin-bottom:8px;font-family:"Chakra Petch",sans-serif}
+.opts{display:flex;flex-wrap:wrap;gap:10px}
+.opts input{position:absolute;opacity:0;pointer-events:none}
+.opts label{padding:10px 18px;border:1px solid var(--line);cursor:pointer;font-size:.92rem;color:var(--muted);transition:.2s;background:var(--bg)}
+.opts input:checked+label{background:var(--lime);border-color:var(--lime);color:var(--ink);font-weight:600}
+.opts input:focus-visible+label{outline:2px solid var(--lime);outline-offset:2px}
+.opts input:disabled+label{opacity:.3;text-decoration:line-through;cursor:not-allowed}
+.cal{background:var(--bg);border:1px solid var(--line);padding:16px;max-width:380px}
+.cal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.cal-top b{font-family:"Chakra Petch",sans-serif;font-size:1.1rem;text-transform:capitalize}
+.cal-top button{background:#222831;border:0;color:var(--text);width:34px;height:34px;cursor:pointer;font-size:1rem}
+.cal-top button:disabled{opacity:.3;cursor:not-allowed}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.cal-grid .dow{font-size:.75rem;color:var(--muted);padding:4px 0}
+.cal-grid button{aspect-ratio:1;background:transparent;border:1px solid transparent;color:var(--text);cursor:pointer;font-size:.9rem;font-family:inherit}
+.cal-grid button:hover:not(:disabled){border-color:var(--lime)}
+.cal-grid button:disabled{color:#4a525e;cursor:not-allowed}
+.cal-grid button.today{border-color:var(--amber)}
+.cal-grid button.sel{background:var(--lime);color:var(--ink);font-weight:700}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{width:100%;padding:13px 16px;background:var(--bg);border:1px solid var(--line);color:var(--text);font:inherit;border-radius:var(--r)}
+.field:focus{outline:none;border-color:var(--lime)}
+.summary{position:sticky;top:90px;border-color:#3a4a1c}
+.summary dl{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;margin:18px 0;font-size:.95rem}
+.summary dt{color:var(--muted)} .summary dd{text-align:right}
+.total{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding-top:16px}
+.total b{font-family:"Chakra Petch",sans-serif;font-size:2.2rem;color:var(--lime)}
+.ok{display:none;padding:14px 16px;background:rgba(184,255,44,.1);border:1px solid var(--lime);font-size:.92rem}
+.ok.show{display:block}
+
+/* contacts */
+.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px}
+.hours{width:100%;border-collapse:collapse;margin-top:14px;font-size:.95rem}
+.hours td{padding:9px 0;border-top:1px solid var(--line)}
+.hours td:last-child{text-align:right;color:var(--muted)}
+.info p{margin:8px 0;color:var(--muted)} .info p b{color:var(--text);font-weight:600}
+.map{border:1px solid var(--line);min-height:400px;background:var(--card)}
+.map iframe{width:100%;height:100%;min-height:400px;border:0;filter:grayscale(1) invert(.9) contrast(.9) hue-rotate(60deg)}
+.social{display:flex;gap:12px;margin-top:18px}
+.social a{width:46px;height:46px;border:1px solid var(--line);display:grid;place-items:center;color:var(--text);transition:.2s}
+.social a:hover{background:var(--lime);color:var(--ink);border-color:var(--lime);transform:translateY(-2px)}
+.social svg{width:21px;height:21px;fill:currentColor}
+
+footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:.9rem;background:var(--bg)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:18px}
+footer .social{margin:0}
+
+/* ===== motion ===== */
+@keyframes heroIn{from{opacity:0}to{opacity:.55}}
+@keyframes heroZoom{from{transform:scale(1.02) translate3d(0,0,0)}to{transform:scale(1.14) translate3d(-1.5%,-1%,0)}}
+@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{transform:scale(.94)}55%{transform:scale(1.04)}100%{transform:scale(1)}}
+@keyframes flash{0%{text-shadow:0 0 0 rgba(184,255,44,0)}40%{text-shadow:0 0 24px rgba(184,255,44,.9)}100%{text-shadow:0 0 0 rgba(184,255,44,0)}}
+.hero p{animation:up .6s .55s ease both}
+.hero-cta{animation:up .6s .7s ease both}
+.hero-meta{animation:up .6s .85s ease both}
+.card{position:relative;overflow:hidden;transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
+.summary{position:sticky}
+.card::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .35s ease;background:linear-gradient(160deg,rgba(184,255,44,.12),rgba(255,176,32,.05) 45%,transparent 70%)}
+@media(hover:hover){
+  .card:hover{transform:translateY(-4px);border-color:var(--lime);box-shadow:0 12px 36px rgba(184,255,44,.16)}
+  .card:hover::before{opacity:1}
+  .summary:hover,.info:hover{transform:none;box-shadow:none}
+  .calc label:hover{transform:translateY(-4px);box-shadow:inset 0 0 22px rgba(184,255,44,.12)}
+}
+.calc label{transition:transform .3s ease,border-color .3s,background .3s,box-shadow .3s}
+.calc label:active{transform:scale(.96)}
+.calc input:checked+label{box-shadow:inset 0 0 0 1px var(--lime),inset 0 0 28px rgba(184,255,44,.18)}
+.opts label,.cal-grid button{transition:transform .15s ease,background .3s,color .3s,border-color .3s}
+.opts label:active,.cal-grid button:active:not(:disabled){transform:scale(.92)}
+.cal-grid button.sel{animation:pop .4s ease}
+.pulse{animation:pop .4s ease}
+.flash{animation:flash .5s ease}
+body .rv{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;transition-delay:var(--d,0s)}
+body .rv.in{opacity:1;transform:none}
+@media(max-width:980px){
+  .services{grid-template-columns:repeat(2,1fr)}
+  .adv{grid-template-columns:1fr 1fr}.adv .big{grid-column:span 2;grid-row:auto;min-height:220px}
+  .tabs{grid-template-columns:1fr}
+  .tablist{flex-direction:row;overflow-x:auto}.tab{white-space:nowrap}
+  .book,.contact{grid-template-columns:1fr}
+  .summary{position:static}
+  .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:170px}
+  .shot:nth-child(n){grid-column:span 1;grid-row:span 1}.shot:nth-child(1),.shot:nth-child(6){grid-column:span 2}
+}
+@media(max-width:760px){
+  section{padding:68px 0}
+  .burger{display:block}
+  .menu{display:none;position:absolute;top:68px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg2);border-bottom:1px solid var(--line);padding:8px 4%}
+  .menu.open{display:flex}.menu a{padding:14px 0;border-bottom:1px solid var(--line)}
+  .nav>.btn{display:none}
+  .services,.adv{grid-template-columns:1fr}.adv .big{grid-column:auto}
+  .calc{gap:8px}.calc label{padding:14px 10px}.calc b{font-size:.95rem}.calc small{font-size:.75rem}
+  .row2{grid-template-columns:1fr}
+  .alt{padding:100px 0}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .hero h1 .l{background-position:-20% 0}
+  .btn:hover,.card:hover,.calc label:hover{transform:none!important}
+}
+</style>
+<style id="nx-back-css">
+.nx-back{position:fixed;top:calc(84px + env(safe-area-inset-top,0px));inset-inline-start:16px;z-index:9999;display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px 0 12px;border-radius:99px;
+  background:rgba(10,10,10,.62);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);color:#fff;
+  font:500 14px/1 system-ui,-apple-system,"Segoe UI",Arial,sans-serif;text-decoration:none;transition:background .3s,color .3s,border-color .3s}
+.nx-back svg{width:16px;height:16px;flex:none;transition:transform .3s}
+.nx-back:hover,.nx-back:focus-visible{background:rgba(255,255,255,.94);color:#0a0a0a;border-color:#fff}
+.nx-back:hover svg,.nx-back:focus-visible svg{transform:translateX(-4px)}
+.nx-back[dir=rtl] svg{transform:scaleX(-1)}
+.nx-back[dir=rtl]:hover svg,.nx-back[dir=rtl]:focus-visible svg{transform:translateX(4px) scaleX(-1)}
+@media(max-width:600px){.nx-back{inset-inline-start:12px;width:40px;padding:0;justify-content:center}.nx-back span{display:none}}
+@media(prefers-reduced-motion:reduce){.nx-back,.nx-back svg{transition:none}}
+</style>
+<script src="../lang.js"></script>
+<style>.nx-pending body{visibility:hidden}</style>
+<script>document.documentElement.classList.add("nx-pending");setTimeout(function(){document.documentElement.classList.remove("nx-pending")},2000)</script>
+</head>
+<body>
+<a class="nx-back" data-nx-ui href="../portfolio/index.html" data-i18n-aria="back_btn" aria-label="Back to Nexus Studio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span data-i18n="back_btn">Back to Nexus Studio</span></a>
+
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="logo" aria-label="Апекс Детейлинг">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 30 30H21l-5-11-5 11H2z" fill="#b8ff2c"/></svg>Апекс Детейлинг
+    </a>
+    <nav class="menu" id="menu" aria-label="Основная навигация" data-i18n-aria="main_navigation">
+      <a href="#services" data-i18n="services">Услуги</a><a href="#process" data-i18n="process">Процесс</a><a href="#why" data-i18n="advantages">Преимущества</a><a href="#gallery" data-i18n="work">Работы</a><a href="#booking" data-i18n="booking">Запись</a><a href="#contacts" data-i18n="contacts">Контакты</a>
+    </nav>
+    <a href="#booking" class="btn btn-primary" data-i18n="book_now">Записаться</a>
+    <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" data-i18n-aria="open_menu">☰</button>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <img class="hero-img" alt="" src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1800&q=70" onerror="this.remove()">
+  <div class="wrap">
+    <h1><span class="l" data-i18n="a_shine_you_can">Блеск, который</span><span class="l" data-i18n="see_a_mile_away">видно за километр</span></h1>
+    <p data-i18n="touchless_wash_interior_cleani">Бесконтактная мойка, химчистка салона, полировка и керамика в Бургасе. Вы приезжаете с грязной машиной, а уезжаете с зеркальной.</p>
+    <div class="hero-cta">
+      <a href="#booking" class="btn btn-primary" data-i18n="book_a_wash">Записаться на мойку</a>
+      <a href="#services" class="btn btn-ghost" data-i18n="polishing_and_ceramic_coating">Полировка и керамика</a>
+    </div>
+    <div class="hero-meta">
+      <div><b>08:00–21:00</b><span data-i18n="every_day">каждый день</span></div>
+      <div><b data-i18n="from_12">от 12 €</b><span data-i18n="express_wash">экспресс-мойка</span></div>
+      <div><b data-i18n="0_scratches">0 царапин</b><span data-i18n="touchless_technology">бесконтактная технология</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 data-i18n="services_and_prices">Услуги и цены</h2>
+      <p data-i18n="choose_a_body_type_and_prices_">Выберите тип кузова, и цены пересчитаются сразу.</p>
+    </div>
+    <div class="calc" id="calc" role="radiogroup" aria-label="Тип кузова" data-i18n-aria="body_type">
+      <input type="radio" name="calc" id="c1" value="sedan" checked>
+      <label for="c1">
+        <svg viewBox="0 0 120 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"><path d="M6 34v-6l12-4 16-9c3-2 6-3 10-3h26c4 0 7 1 10 4l10 8 16 3v7z"/><circle cx="32" cy="36" r="7" fill="#0d0f12"/><circle cx="90" cy="36" r="7" fill="#0d0f12"/></svg>
+        <b data-i18n="sedan">Седан</b><small data-i18n="base_price">базовая цена</small>
+      </label>
+      <input type="radio" name="calc" id="c2" value="suv">
+      <label for="c2">
+        <svg viewBox="0 0 120 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"><path d="M6 34v-8l10-3 6-12c1-2 3-3 6-3h56c3 0 5 1 7 3l8 11 12 2v10z"/><circle cx="32" cy="36" r="7" fill="#0d0f12"/><circle cx="90" cy="36" r="7" fill="#0d0f12"/></svg>
+        <b data-i18n="crossover_suv">Кроссовер / SUV</b><small>+20%</small>
+      </label>
+      <input type="radio" name="calc" id="c3" value="van">
+      <label for="c3">
+        <svg viewBox="0 0 120 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"><path d="M6 34V16c0-3 2-5 5-5h66c4 0 7 2 9 5l10 9 12 3v6z"/><circle cx="32" cy="36" r="7" fill="#0d0f12"/><circle cx="90" cy="36" r="7" fill="#0d0f12"/></svg>
+        <b data-i18n="minivan">Минивэн</b><small>+35%</small>
+      </label>
+    </div>
+    <div class="grid services">
+      <article class="card">
+        <h3 data-i18n="express_wash_2">Экспресс-мойка</h3>
+        <div class="price"><small data-i18n="from">от</small><span data-base="12">12</span> €</div>
+        <ul><li data-i18n="body_wash">Мойка кузова</li><li data-i18n="streak_free_drying">Сушка без разводов</li><li data-i18n="wheel_cleaning">Мойка дисков</li></ul>
+        <a href="#booking" class="btn btn-ghost" data-pick="express" data-i18n="select">Выбрать</a>
+      </article>
+      <article class="card hot">
+        <span class="tag" data-i18n="top_pick">Хит</span>
+        <h3 data-i18n="detailing_package">Детейлинг-комплекс</h3>
+        <div class="price"><small data-i18n="from">от</small><span data-base="29">29</span> €</div>
+        <ul><li data-i18n="two_phase_wash">Двухфазная мойка</li><li data-i18n="wax">Воск</li><li data-i18n="interior_cleaning">Уборка салона</li><li data-i18n="tire_dressing">Чернение шин</li></ul>
+        <a href="#booking" class="btn btn-primary" data-pick="complex" data-i18n="select">Выбрать</a>
+      </article>
+      <article class="card">
+        <h3 data-i18n="deep_interior_cleaning">Глубокая химчистка салона</h3>
+        <div class="price"><small data-i18n="from">от</small><span data-base="59">59</span> €</div>
+        <ul><li data-i18n="leather_and_fabric_cleaning">Очистка кожи и ткани</li><li data-i18n="ozone_odor_removal">Озонирование от запахов</li><li data-i18n="plastic_treatment">Обработка пластика</li></ul>
+        <a href="#booking" class="btn btn-ghost" data-pick="interior" data-i18n="select">Выбрать</a>
+      </article>
+      <article class="card">
+        <h3 data-i18n="polishing_and_ceramic_coating">Полировка и керамика</h3>
+        <div class="price"><small data-i18n="from">от</small><span data-base="220">220</span> €</div>
+        <ul><li data-i18n="protective_layer">Защитный слой</li><li data-i18n="hydrophobic_effect">Гидрофобный эффект</li><li data-i18n="deep_gloss">Глубокий блеск</li></ul>
+        <a href="#booking" class="btn btn-ghost" data-pick="ceramic" data-i18n="select">Выбрать</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="process" class="alt">
+  <div class="wrap">
+    <div class="sec-head"><h2 data-i18n="how_we_work">Как мы работаем</h2><p data-i18n="every_car_goes_through_four_st">Каждый автомобиль проходит четыре этапа. Выберите этап, чтобы узнать подробности.</p></div>
+    <div class="tabs">
+      <div class="tablist" role="tablist" aria-label="Этапы работы">
+        <button class="tab" role="tab" aria-selected="true" aria-controls="p1" id="t1"><span>1</span><span data-i18n="reception">Приёмка</span></button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p2" id="t2" tabindex="-1"><span>2</span><span data-i18n="wash">Мойка</span></button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p3" id="t3" tabindex="-1"><span>3</span><span data-i18n="detailing">Детейлинг</span></button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p4" id="t4" tabindex="-1"><span>4</span><span data-i18n="inspection">Контроль</span></button>
+      </div>
+      <div>
+        <div class="panel on" role="tabpanel" id="p1" aria-labelledby="t1"><h3 data-i18n="inspection_and_photo_record">Осмотр и фотофиксация</h3><p data-i18n="the_technician_inspects_the_bo">Мастер осматривает кузов и салон, фиксирует состояние автомобиля и согласует с вами объём работ и итоговую цену.</p><ul><li data-i18n="paint_inspection">Осмотр лака</li><li data-i18n="price_agreement">Согласование цены</li><li data-i18n="photos_before_work">Фото до начала работ</li></ul><div class="big" aria-hidden="true">1</div></div>
+        <div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden><h3 data-i18n="touchless_two_phase_wash">Бесконтактная двухфазная мойка</h3><p data-i18n="first_active_foam_dissolves_di">Сначала активная пена растворяет грязь, затем кузов моют мягким шампунем. Щётки не касаются лака, поэтому царапин не появляется.</p><ul><li data-i18n="active_foam">Активная пена</li><li data-i18n="pressure_wash">Мойка под давлением</li><li data-i18n="rim_cleaning">Очистка дисков</li></ul><div class="big" aria-hidden="true">2</div></div>
+        <div class="panel" role="tabpanel" id="p3" aria-labelledby="t3" hidden><h3 data-i18n="interior_wax_polishing_ceramic">Салон, воск, полировка, керамика</h3><p data-i18n="we_clean_the_interior_apply_wa">Чистим салон, наносим воск или керамику и при необходимости убираем микроцарапины полировкой. Выбор зависит от вашей услуги.</p><ul><li data-i18n="dry_cleaning">Химчистка</li><li data-i18n="ozonation">Озонирование</li><li data-i18n="polishing">Полировка</li><li data-i18n="ceramic_coating">Керамика</li></ul><div class="big" aria-hidden="true">3</div></div>
+        <div class="panel" role="tabpanel" id="p4" aria-labelledby="t4" hidden><h3 data-i18n="check_under_light">Проверка при свете</h3><p data-i18n="we_check_the_result_under_brig">Мы проверяем результат под ярким светом, протираем стёкла и показываем вам готовый автомобиль. Если что-то не устроит, исправим сразу.</p><ul><li data-i18n="inspection_under_lamps">Контроль под лампами</li><li data-i18n="final_wipe_down">Финальная протирка</li><li data-i18n="car_handover">Выдача авто</li></ul><div class="big" aria-hidden="true">4</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <div class="sec-head"><h2 data-i18n="why_choose_us">Почему выбирают нас</h2></div>
+    <div class="grid adv">
+      <div class="card big"><div class="ico">◇</div><h3 data-i18n="safe_touchless_wash">Безопасная бесконтактная мойка</h3><p data-i18n="foam_and_pressurized_water_ins">Пена и вода под давлением вместо щёток. Лак остаётся гладким, а блеск держится дольше.</p></div>
+      <div class="card"><div class="ico">⚗</div><h3 data-i18n="professional_chemicals">Профессиональная химия</h3><p data-i18n="ph_neutral_formulas_safe_for_p">Составы с нейтральным pH, безопасные для краски, пластика и резины.</p></div>
+      <div class="card"><div class="ico">☕</div><h3 data-i18n="cozy_waiting_area">Уютная зона ожидания</h3><p data-i18n="coffee_wi_fi_and_soft_sofas_ov">Кофе, Wi-Fi и мягкие диваны с видом на бокс.</p></div>
+      <div class="card"><div class="ico">✦</div><h3 data-i18n="result_guarantee">Гарантия результата</h3><p data-i18n="if_anything_isn_t_right_we_ll_">Если что-то не устроит, переделаем бесплатно.</p></div>
+      <div class="card"><div class="ico">⏱</div><h3 data-i18n="by_appointment_only">Работаем по записи</h3><p data-i18n="no_queues_your_time_slot_is_re">Никаких очередей: ваше время закреплено за вами.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="sec-head"><h2 data-i18n="our_work">Наши работы</h2><p data-i18n="cars_that_have_left_the_studio">Автомобили, которые покинули студию.</p></div>
+    <div class="grid gallery">
+      <figure class="shot"><img loading="lazy" alt="Спорткар с глянцевым кузовом" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=70" onerror="this.remove()"><span data-i18n="ceramic_coating">Керамика</span></figure>
+      <figure class="shot"><img loading="lazy" alt="Блестящий седан после мойки" src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=900&q=70" onerror="this.remove()"><span data-i18n="package">Комплекс</span></figure>
+      <figure class="shot"><img loading="lazy" alt="Детейлинг кузова" src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=700&q=70" onerror="this.remove()"><span data-i18n="polishing">Полировка</span></figure>
+      <figure class="shot"><img loading="lazy" alt="Автомобиль после мойки" src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=500&q=70" onerror="this.remove()"><span data-i18n="wash">Мойка</span></figure>
+      <figure class="shot"><img loading="lazy" alt="Тёмный автомобиль с зеркальным блеском" src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=700&q=70" onerror="this.remove()"><span data-i18n="polishing">Полировка</span></figure>
+      <figure class="shot"><img loading="lazy" alt="Автомобиль на дороге" src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=70" onerror="this.remove()"><span data-i18n="ceramic_coating">Керамика</span></figure>
+    </div>
+  </div>
+</section>
+
+<section id="booking" class="alt">
+  <div class="wrap">
+    <div class="sec-head"><h2 data-i18n="online_booking">Онлайн-запись</h2><p data-i18n="choose_a_service_body_type_day">Выберите услугу, кузов, день и время.</p></div>
+    <div class="book">
+      <form id="form" novalidate>
+        <fieldset>
+          <legend data-i18n="service">Услуга</legend>
+          <div class="opts" id="svc">
+            <input type="radio" name="svc" id="s1" value="express"><label for="s1" data-i18n="express_wash_2">Экспресс-мойка</label>
+            <input type="radio" name="svc" id="s2" value="complex" checked><label for="s2" data-i18n="detailing_package">Детейлинг-комплекс</label>
+            <input type="radio" name="svc" id="s3" value="interior"><label for="s3" data-i18n="interior_deep_cleaning">Химчистка салона</label>
+            <input type="radio" name="svc" id="s4" value="ceramic"><label for="s4" data-i18n="polishing_and_ceramic_coating">Полировка и керамика</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend data-i18n="body_type">Тип кузова</legend>
+          <div class="opts" id="body">
+            <input type="radio" name="body" id="b1" value="sedan" checked><label for="b1" data-i18n="sedan">Седан</label>
+            <input type="radio" name="body" id="b2" value="suv"><label for="b2" data-i18n="crossover_suv_20">Кроссовер / SUV (+20%)</label>
+            <input type="radio" name="body" id="b3" value="van"><label for="b3" data-i18n="minivan_35">Минивэн (+35%)</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend data-i18n="date">Дата</legend>
+          <div class="cal" id="cal">
+            <div class="cal-top"><button type="button" id="prev" aria-label="Предыдущий месяц">‹</button><b id="month"></b><button type="button" id="next" aria-label="Следующий месяц">›</button></div>
+            <div class="cal-grid" id="days"></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend data-i18n="time">Время</legend>
+          <div class="opts" id="slots"></div>
+        </fieldset>
+        <div class="row2">
+          <div><label class="l" for="name" data-i18n="name">Имя</label><input class="field" type="text" id="name" autocomplete="off"></div>
+          <div><label class="l" for="phone" data-i18n="phone">Телефон</label><input class="field" type="tel" id="phone" autocomplete="off"></div>
+        </div>
+        <button type="submit" class="btn btn-primary" data-i18n="book_now">Записаться</button>
+        <div class="ok" id="ok" role="status"></div>
+      </form>
+      <aside class="card summary" aria-live="polite">
+        <h3 data-i18n="your_booking">Ваша запись</h3>
+        <dl>
+          <dt data-i18n="service">Услуга</dt><dd id="o-svc">—</dd>
+          <dt data-i18n="body">Кузов</dt><dd id="o-body">—</dd>
+          <dt data-i18n="date">Дата</dt><dd id="o-date" data-i18n="not_selected">не выбрана</dd>
+          <dt data-i18n="time">Время</dt><dd id="o-time" data-i18n="not_chosen">не выбрано</dd>
+        </dl>
+        <div class="total"><span data-i18n="total">Итого</span><b id="o-total">0 €</b></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="contacts">
+  <div class="wrap">
+    <div class="sec-head"><h2 data-i18n="contacts_and_opening_hours">Контакты и график работы</h2></div>
+    <div class="contact">
+      <div class="card info">
+        <p><b data-i18n="address_2">Адрес:</b> <span data-i18n="aleksandrovska_st_1_burgas" data-nx-geo="full">ул. Александровская 1, Бургас</span></p>
+        <p><b data-i18n="phone_2">Телефон:</b> +359 56 000 000</p>
+        <p><b data-i18n="email_2">Email:</b> hello@apex-detailing.bg</p>
+        <table class="hours">
+          <tr><td data-i18n="monday_saturday">Понедельник – суббота</td><td>08:00 – 21:00</td></tr>
+          <tr><td data-i18n="sunday">Воскресенье</td><td>09:00 – 20:00</td></tr>
+        </table>
+        <div class="social" aria-label="Мы в соцсетях" data-i18n-aria="follow_us">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM17.3 5.8a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z"/></svg></a>
+          <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M21.5 3.5 2.7 10.8c-1 .4-1 1.3-.2 1.5l4.8 1.5 1.8 5.6c.2.6.4.8.9.8s.7-.2 1-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.9c.3-1.2-.5-1.8-1.3-1.4zM8.5 13.2l9.1-5.7c.4-.3.8-.1.5.2l-7.5 6.8-.3 3.1z"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16.6 2h-3.2v13.2a2.9 2.9 0 1 1-2-2.8V9.1a6.1 6.1 0 1 0 5.2 6V8.6a7.5 7.5 0 0 0 4.4 1.4V6.8A4.4 4.4 0 0 1 16.6 2z"/></svg></a>
+        </div>
+      </div>
+      <div class="map">
+        <iframe title="Апекс Детейлинг на карте Google Maps" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=42.5048,27.4626&z=15&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span data-i18n="detailing_footer_copy">© 2026 Апекс Детейлинг, Бургас</span>
+    <div class="social">
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM17.3 5.8a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z"/></svg></a>
+      <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M21.5 3.5 2.7 10.8c-1 .4-1 1.3-.2 1.5l4.8 1.5 1.8 5.6c.2.6.4.8.9.8s.7-.2 1-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.9c.3-1.2-.5-1.8-1.3-1.4zM8.5 13.2l9.1-5.7c.4-.3.8-.1.5.2l-7.5 6.8-.3 3.1z"/></svg></a>
+      <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16.6 2h-3.2v13.2a2.9 2.9 0 1 1-2-2.8V9.1a6.1 6.1 0 1 0 5.2 6V8.6a7.5 7.5 0 0 0 4.4 1.4V6.8A4.4 4.4 0 0 1 16.6 2z"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)}, $$=function(s){return document.querySelectorAll(s)};
+  var SVC={express:['Экспресс-мойка',12],complex:['Детейлинг-комплекс',29],interior:['Химчистка салона',59],ceramic:['Полировка и керамика',220]};
+  var BODY={sedan:['Седан',1],suv:['Кроссовер / SUV',1.2],van:['Минивэн',1.35]};
+  var MONTHS=NX.months(false);
+  var TIMES=['09:00','11:30','14:00','16:30','19:00'];
+  var selDate=null,selTime='';
+
+  // menu
+  var burger=$('#burger'),menu=$('#menu');
+  burger.addEventListener('click',function(){var o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o)});
+  menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('open');burger.setAttribute('aria-expanded',false)}});
+
+  function val(n){return document.querySelector('input[name="'+n+'"]:checked').value}
+  function pad(n){return n<10?'0'+n:''+n}
+  function fmt(d){return d?pad(d.getDate())+'.'+pad(d.getMonth()+1)+'.'+d.getFullYear():'не выбрана'}
+
+  // body type: calculator <-> booking form stay in sync
+  function setBody(v){
+    var a=$('input[name="calc"][value="'+v+'"]'),b=$('input[name="body"][value="'+v+'"]');
+    a.checked=true;b.checked=true;pulse(a.nextElementSibling);pulse(b.nextElementSibling);
+    updatePrices();update();
+  }
+  $$('input[name="calc"]').forEach(function(i){i.addEventListener('change',function(){setBody(i.value)})});
+  $$('input[name="body"]').forEach(function(i){i.addEventListener('change',function(){setBody(i.value)})});
+
+  // animated price recalculation
+  function updatePrices(){
+    var m=BODY[val('calc')][1];
+    $$('[data-base]').forEach(function(el){
+      flashEl(el.parentNode);
+      var to=Math.round(el.dataset.base*m),from=+el.textContent,t0=null;
+      if(matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=to;return}
+      function step(t){
+        if(!t0)t0=t;var p=Math.min((t-t0)/350,1);
+        el.textContent=Math.round(from+(to-from)*p);
+        if(p<1)requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }
+
+  // tabs
+  var tabs=[].slice.call($$('.tab')),panels=[].slice.call($$('.panel'));
+  function openTab(i){
+    tabs.forEach(function(t,k){t.setAttribute('aria-selected',k===i);t.tabIndex=k===i?0:-1});
+    panels.forEach(function(p,k){p.hidden=k!==i;p.classList.toggle('on',k===i)});
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){openTab(i)});
+    t.addEventListener('keydown',function(e){
+      var n=e.key==='ArrowRight'||e.key==='ArrowDown'?(i+1)%tabs.length:e.key==='ArrowLeft'||e.key==='ArrowUp'?(i+tabs.length-1)%tabs.length:-1;
+      if(n>=0){e.preventDefault();openTab(n);tabs[n].focus()}
+    });
+  });
+
+  // calendar
+  var now=new Date();now.setHours(0,0,0,0);
+  var view=new Date(now.getFullYear(),now.getMonth(),1);
+  function drawCal(){
+    var y=view.getFullYear(),m=view.getMonth();
+    $('#month').textContent=MONTHS[m]+' '+y;
+    $('#prev').disabled=(y===now.getFullYear()&&m===now.getMonth());
+    $('#next').disabled=(y*12+m)>=(now.getFullYear()*12+now.getMonth()+1);
+    var g=$('#days');g.innerHTML='';
+    NX.dow().forEach(function(d){var s=document.createElement('div');s.className='dow';s.textContent=d;g.appendChild(s)});
+    var first=(new Date(y,m,1).getDay()+6)%7,total=new Date(y,m+1,0).getDate();
+    for(var i=0;i<first;i++)g.appendChild(document.createElement('span'));
+    for(var d=1;d<=total;d++){
+      (function(d){
+        var date=new Date(y,m,d),b=document.createElement('button');
+        b.type='button';b.textContent=d;
+        if(date<now)b.disabled=true;
+        if(+date===+now)b.classList.add('today');
+        if(selDate&&+date===+selDate)b.classList.add('sel');
+        b.addEventListener('click',function(){selDate=date;selTime='';drawCal();drawSlots();update()});
+        g.appendChild(b);
+      })(d);
+    }
+  }
+  $('#prev').addEventListener('click',function(){view.setMonth(view.getMonth()-1);drawCal()});
+  $('#next').addEventListener('click',function(){view.setMonth(view.getMonth()+1);drawCal()});
+
+  function drawSlots(){
+    var box=$('#slots');box.innerHTML='';
+    if(!selDate){box.innerHTML='<span style="color:var(--muted);font-size:.9rem">Сначала выберите дату в календаре.</span>';return}
+    var seed=selDate.getFullYear()*10000+(selDate.getMonth()+1)*100+selDate.getDate();
+    TIMES.forEach(function(t,i){
+      var busy=((seed*7+i*11)%6===0);
+      var inp=document.createElement('input');inp.type='radio';inp.name='time';inp.id='t'+i;inp.value=t;inp.disabled=busy;
+      var lab=document.createElement('label');lab.htmlFor='t'+i;lab.textContent=t;
+      inp.addEventListener('change',function(){selTime=t;update()});
+      box.appendChild(inp);box.appendChild(lab);
+    });
+  }
+
+  function update(){
+    var s=SVC[val('svc')],b=BODY[val('body')];
+    $('#o-svc').textContent=s[0];$('#o-body').textContent=b[0];
+    $('#o-date').textContent=fmt(selDate);
+    $('#o-time').textContent=selTime||'не выбрано';
+    var tot=Math.round(s[1]*b[1])+' €',te=$('#o-total');
+    if(te.textContent!==tot){te.textContent=tot;flashEl(te)}
+  }
+  $$('input[name="svc"]').forEach(function(i){i.addEventListener('change',update)});
+  $$('[data-pick]').forEach(function(a){
+    a.addEventListener('click',function(){$('input[name="svc"][value="'+a.dataset.pick+'"]').checked=true;update()});
+  });
+
+  $('#form').addEventListener('submit',function(e){
+    e.preventDefault();
+    var ok=$('#ok');ok.classList.add('show');
+    if(!selDate||!selTime||!$('#name').value.trim()||!$('#phone').value.trim()){
+      ok.textContent='Выберите дату и время, а также укажите имя и телефон.';return;
+    }
+    ok.textContent=NX.t('dt_thanks').replace('{name}',$('#name').value.trim()).replace('{date}',fmt(selDate)).replace('{time}',selTime);
+  });
+
+  // micro-animations helpers
+  function pulse(el){if(!el)return;el.classList.remove('pulse');void el.offsetWidth;el.classList.add('pulse')}
+  function flashEl(el){el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash')}
+  document.addEventListener('animationend',function(e){e.target.classList.remove('pulse','flash')});
+  document.addEventListener('change',function(e){
+    var t=e.target;
+    if(t.type==='radio'&&t.nextElementSibling&&t.nextElementSibling.tagName==='LABEL')pulse(t.nextElementSibling);
+  });
+
+  // social links are placeholders for now
+  $$('.social a').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault()})});
+
+  // scroll reveal
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce&&'IntersectionObserver' in window){
+    var cnt=new Map();
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(en){
+        if(!en.isIntersecting)return;
+        var el=en.target;el.classList.add('in');io.unobserve(el);
+        setTimeout(function(){el.classList.remove('rv','in');el.style.removeProperty('--d')},1200);
+      });
+    },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    $$('.sec-head,.calc label,.card,.shot,.tabs,.book form,.map').forEach(function(el){
+      var p=el.parentNode,n=cnt.get(p)||0;cnt.set(p,n+1);
+      el.style.setProperty('--d',Math.min(n,4)*.08+'s');
+      el.classList.add('rv');io.observe(el);
+    });
+  }
+
+  drawCal();drawSlots();update();
+})();
+</script>
+</body>
+</html>
